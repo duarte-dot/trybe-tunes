@@ -5,5 +5,5 @@ class App extends React.Component {
     return (<p>TrybeTunes</p>);
   }
 }
-
+// iniciando projeto
 export default App;
