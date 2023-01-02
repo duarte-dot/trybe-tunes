@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Header from '../components/Header';
 
 class ProfileEdit extends Component {
   render() {
     return (
       <div data-testid="page-profile-edit">
-        <h1>Profile edit</h1>
+        <Header />
+        <h2>Profile edit</h2>
       </div>
     );
   }

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Header from '../components/Header';
 
 class Album extends Component {
   render() {
     return (
       <div data-testid="page-album">
-        <h1>Album</h1>
+        <Header />
+        <h2>Album</h2>
       </div>
     );
   }

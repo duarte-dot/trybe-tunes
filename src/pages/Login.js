@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { createUser } from '../services/userAPI';
-import Loading from './Loading';
+import Loading from '../components/Loading';
 
 class Login extends Component {
   constructor() {
@@ -54,7 +54,7 @@ class Login extends Component {
     }
     return (
       <div data-testid="page-login">
-        <h1>Login</h1>
+        <h2>Login</h2>
         <form
           onSubmit={ this.createUserRedirect }
         >
