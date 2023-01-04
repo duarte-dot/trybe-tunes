@@ -34,7 +34,7 @@ class Login extends Component {
     this.setState({
       name: value,
     }, () => {
-      const min = 3;
+      const min = 2;
       if (value.length >= min) {
         this.setState({
           isLoginButtonDisabled: false,
@@ -58,23 +58,27 @@ class Login extends Component {
         <form
           onSubmit={ this.createUserRedirect }
         >
-          <label htmlFor="login">
-            Name:
-            <input
-              type="text"
-              id="login"
-              name="login"
-              data-testid="login-name-input"
-              onChange={ this.onInputChange }
-            />
-          </label>
-          <button
-            type="submit"
-            data-testid="login-submit-button"
-            disabled={ isLoginButtonDisabled }
-          >
-            Entrar
-          </button>
+          <div>
+            <label htmlFor="login">
+              <div>
+                Name:
+              </div>
+              <input
+                type="text"
+                id="login"
+                name="login"
+                data-testid="login-name-input"
+                onChange={ this.onInputChange }
+              />
+            </label>
+            <button
+              type="submit"
+              data-testid="login-submit-button"
+              disabled={ isLoginButtonDisabled }
+            >
+              Entrar
+            </button>
+          </div>
         </form>
       </div>
     );

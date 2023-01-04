@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Loading from './Loading';
-// import Loading from './Loading';
 
 class Header extends Component {
   constructor() {
@@ -28,13 +27,56 @@ class Header extends Component {
     const { loading, user } = this.state;
     return (
       <header data-testid="header-component">
-        <h1>TrybeTunes</h1>
-        <span data-testid="header-user-name">{loading ? <Loading /> : user}</span>
-        <div>
-          <Link to="/search" data-testid="link-to-search">search</Link>
-          <Link to="/favorites" data-testid="link-to-favorites">favorites</Link>
-          <Link to="/profile" data-testid="link-to-profile">profile</Link>
-        </div>
+        <section
+          style={ {
+            display: 'flex',
+            justifyContent: 'space-between',
+            backgroundColor: '#EFF3F9',
+            padding: '15px' } }
+        >
+          <h1>TrybeTunes</h1>
+          <div style={ { display: 'flex', alignItems: 'center' } }>
+            <span>
+              {
+                loading ? <Loading /> : user
+              }
+            </span>
+          </div>
+        </section>
+        <section
+          style={ {
+            display: 'flex',
+            justifyContent: 'space-around',
+            backgroundColor: '#9D5C63',
+            marginBottom: '5px',
+            alignItems: 'center',
+          } }
+        >
+          <Link
+            style={ {
+              color: 'black' } }
+            to="/search"
+            data-testid="link-to-search"
+          >
+            search
+          </Link>
+          <Link
+            style={ {
+              color: 'black' } }
+            to="/favorites"
+            data-testid="link-to-favorites"
+          >
+            favorites
+          </Link>
+          <Link
+            style={ {
+              color: 'black' } }
+            to="/profile"
+            data-testid="link-to-profile"
+          >
+            profile
+          </Link>
+        </section>
       </header>
     );
   }
