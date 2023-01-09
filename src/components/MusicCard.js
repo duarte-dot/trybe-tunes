@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class MusicCard extends Component {
   render() {
-    const { trackName, previewUrl } = this.props;
+    const { trackId, trackName, previewUrl } = this.props;
     return (
       <div
         style={ {
@@ -19,6 +19,11 @@ class MusicCard extends Component {
           {' '}
           <code>audio</code>
         </audio>
+        <label data-testid={ `checkbox-music-${trackId}` } htmlFor="checkb">
+          Favorita
+          <input type="checkbox" name="checkb" id="checkb" />
+
+        </label>
       </div>
     );
   }
@@ -27,6 +32,7 @@ class MusicCard extends Component {
 MusicCard.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
+  trackId: PropTypes.string.isRequired,
 };
 
 export default MusicCard;

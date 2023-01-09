@@ -12,10 +12,10 @@ class Album extends Component {
   };
 
   componentDidMount() {
-    this.getSongs();
+    this.getMusics();
   }
 
-  getSongs = async () => {
+  getMusics = async () => {
     this.setState({ isLoading: true });
     const { match: { params } } = this.props;
     const request = await getMusics(params.id);
