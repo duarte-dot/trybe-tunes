@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
-import CardMusic from '../components/CardMusic';
+import MusicCard from '../components/CardMusic';
 import getMusics from '../services/musicsAPI';
 
 class Album extends Component {
@@ -64,7 +64,7 @@ class Album extends Component {
             if (!song.trackName) {
               return;
             }
-            return (<CardMusic
+            return (<MusicCard
               trackName={ song.trackName }
               previewUrl={ song.previewUrl }
               key={ index }
