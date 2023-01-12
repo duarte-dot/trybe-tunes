@@ -4,11 +4,13 @@ import Header from '../components/Header';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
   state = {
     requestR: [],
     isLoading: false,
+    favoriteSongs: [],
   };
 
   componentDidMount() {
@@ -19,7 +21,10 @@ class Album extends Component {
     this.setState({ isLoading: true });
     const { match: { params } } = this.props;
     const request = await getMusics(params.id);
-    this.setState({ requestR: request, isLoading: false });
+    const requestFav = await getFavoriteSongs();
+    this.setState({ requestR: request,
+      isLoading: false,
+      favoriteSongs: requestFav });
   };
 
   render() {
@@ -35,6 +40,7 @@ class Album extends Component {
     }
 
     if (requestR.length >= 1) {
+      const { favoriteSongs } = this.state;
       return (
         <section data-testid="page-album">
           <Header />
@@ -64,10 +70,25 @@ class Album extends Component {
             if (!song.trackName) {
               return;
             }
+            for (let i = 0; i < favoriteSongs.length; i += 1) {
+              if (favoriteSongs[i].trackId === song.trackId) {
+                return (<MusicCard
+                  trackName={ song.trackName }
+                  previewUrl={ song.previewUrl }
+                  trackId={ song.trackId }
+                  songObj={ song }
+                  checked
+                  key={ index }
+                />);
+              }
+            }
             return (<MusicCard
+              songObj={ song }
               trackName={ song.trackName }
               previewUrl={ song.previewUrl }
+              trackId={ song.trackId }
               key={ index }
+              checked={ false }
             />);
           })}
         </section>
