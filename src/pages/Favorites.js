@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
-import MusicCard from '../components/MusicCard';
 import Loading from '../components/Loading';
+import MusicCardWithGetSongs from '../components/MusicCardWithGetSongs';
 
 class Favorites extends Component {
   constructor() {
@@ -44,7 +44,7 @@ class Favorites extends Component {
         <Header />
         <h2>Favorites</h2>
         {favoriteSongs.map((song, index) => (
-          <MusicCard
+          <MusicCardWithGetSongs
             trackName={ song.trackName }
             previewUrl={ song.previewUrl }
             trackId={ song.trackId }

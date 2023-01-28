@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
-class MusicCard extends Component {
+class MusicCardWithGetSongs extends Component {
   state = {
     isLoading: false,
     isFavorite: false,
@@ -18,15 +18,17 @@ class MusicCard extends Component {
 
   favSongCheck = async () => {
     const { isFavorite } = this.state;
-    const { songObj } = this.props;
+    const { songObj, getSongs } = this.props;
     if (isFavorite) {
       this.setState({ isFavorite: false, isLoading: true });
       await removeSong(songObj);
       this.setState({ isLoading: false });
+      await getSongs();
     } else {
       this.setState({ isFavorite: true, isLoading: true });
       await addSong(songObj);
       this.setState({ isLoading: false });
+      await getSongs();
     }
   };
 
@@ -68,12 +70,13 @@ class MusicCard extends Component {
   }
 }
 
-MusicCard.propTypes = {
+MusicCardWithGetSongs.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,
   songObj: PropTypes.shape({}).isRequired,
   checked: PropTypes.bool.isRequired,
+  getSongs: PropTypes.func.isRequired,
 };
 
-export default MusicCard;
+export default MusicCardWithGetSongs;
