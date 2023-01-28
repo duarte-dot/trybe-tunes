@@ -101,17 +101,18 @@ class Search extends Component {
             {' '}
             {artistName}
           </h3>
-
-          {requestR.length === 0 ? <h1>Nenhum álbum foi encontrado</h1>
-            : requestR.map((album, index) => (
-              <CardAlbum
-                imgUrl={ album.artworkUrl100 }
-                artistName={ album.artistName }
-                collectionName={ album.collectionName }
-                collectionId={ album.collectionId }
-                key={ index }
-              />
-            ))}
+          <div>
+            {requestR.length === 0 ? <h1>Nenhum álbum foi encontrado</h1>
+              : requestR.map((album, index) => (
+                <CardAlbum
+                  imgUrl={ album.artworkUrl100 }
+                  artistName={ album.artistName }
+                  collectionName={ album.collectionName }
+                  collectionId={ album.collectionId }
+                  key={ index }
+                />
+              ))}
+          </div>
         </div>
       );
     }

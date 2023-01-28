@@ -18,15 +18,17 @@ class MusicCard extends Component {
 
   favSongCheck = async () => {
     const { isFavorite } = this.state;
-    const { songObj } = this.props;
+    const { songObj, getSongs } = this.props;
     if (isFavorite) {
       this.setState({ isFavorite: false, isLoading: true });
       await removeSong(songObj);
       this.setState({ isLoading: false });
+      await getSongs();
     } else {
       this.setState({ isFavorite: true, isLoading: true });
       await addSong(songObj);
       this.setState({ isLoading: false });
+      await getSongs();
     }
   };
 
@@ -74,6 +76,7 @@ MusicCard.propTypes = {
   trackId: PropTypes.number.isRequired,
   songObj: PropTypes.shape({}).isRequired,
   checked: PropTypes.bool.isRequired,
+  getSongs: PropTypes.func.isRequired,
 };
 
 export default MusicCard;
