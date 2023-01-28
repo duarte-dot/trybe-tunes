@@ -34,7 +34,7 @@ class Login extends Component {
     this.setState({
       name: value,
     }, () => {
-      const min = 2;
+      const min = 3;
       if (value.length >= min) {
         this.setState({
           isLoginButtonDisabled: false,

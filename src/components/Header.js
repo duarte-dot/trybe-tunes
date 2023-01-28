@@ -36,7 +36,7 @@ class Header extends Component {
         >
           <h1>TrybeTunes</h1>
           <div style={ { display: 'flex', alignItems: 'center' } }>
-            <span>
+            <span data-testid="header-user-name">
               {
                 loading ? <Loading /> : user
               }
