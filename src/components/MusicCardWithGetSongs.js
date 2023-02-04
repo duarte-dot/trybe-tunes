@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
-import Loading from './Loading';
 
 class MusicCardWithGetSongs extends Component {
   state = {
@@ -37,7 +36,7 @@ class MusicCardWithGetSongs extends Component {
     const { trackId, trackName, previewUrl } = this.props;
     const { isFavorite, isLoading } = this.state;
     if (isLoading) {
-      return <Loading />;
+      return <p>Loading...</p>;
     }
     return (
       <div className="testFavorites">
