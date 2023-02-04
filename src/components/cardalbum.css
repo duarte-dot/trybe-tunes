@@ -1,0 +1,54 @@
+h2 {
+  font-size: 12px;
+}
+
+p {
+  font-size: 9px;
+  margin-bottom: 50px;
+  max-width: 200px;
+}
+
+img {
+  border-radius: 9px;
+  margin-right: 10px;
+}
+
+a {
+  color: black;
+}
+
+.album {
+  max-width: 200px;
+}
+
+p {
+  font-size: 20px;
+}
+
+
+audio {
+  margin-bottom: 50px;
+  margin-left: 30px;
+  margin-right: 30px
+}
+
+.test {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1000px;
+}
+
+input[type=checkbox] {
+  width: 30px;
+}
+
+.music-name-album {
+  margin-bottom: 0px;
+  font-size: 20px;
+}
+
+.artist-name-album {
+  font-size: 12px;
+  color: #313a47;
+}

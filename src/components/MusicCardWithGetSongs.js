@@ -6,7 +6,7 @@ import Loading from './Loading';
 class MusicCardWithGetSongs extends Component {
   state = {
     isLoading: false,
-    isFavorite: false,
+    isFavorite: true,
   };
 
   componentDidMount() {
@@ -22,7 +22,7 @@ class MusicCardWithGetSongs extends Component {
     if (isFavorite) {
       this.setState({ isFavorite: false, isLoading: true });
       await removeSong(songObj);
-      this.setState({ isLoading: false });
+      this.setState({ isLoading: false, isFavorite: true });
       await getSongs();
     } else {
       this.setState({ isFavorite: true, isLoading: true });
@@ -30,6 +30,7 @@ class MusicCardWithGetSongs extends Component {
       this.setState({ isLoading: false });
       await getSongs();
     }
+    // await getSongs();
   };
 
   render() {
@@ -39,22 +40,15 @@ class MusicCardWithGetSongs extends Component {
       return <Loading />;
     }
     return (
-      <div
-        style={ {
-          marginTop: '40px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center' } }
-      >
+      <div className="testFavorites">
         <p>{trackName}</p>
-        <audio data-testid="audio-component" src={ previewUrl } controls>
-          <track kind="captions" />
-          O seu navegador não suporta o elemento
-          {' '}
-          <code>audio</code>
-        </audio>
-        <label htmlFor="checkb">
-          Favorita
+        <div className="testFavorites">
+          <audio data-testid="audio-component" src={ previewUrl } controls>
+            <track kind="captions" />
+            O seu navegador não suporta o elemento
+            {' '}
+            <code>audio</code>
+          </audio>
           <input
             data-testid={ `checkbox-music-${trackId}` }
             type="checkbox"
@@ -63,8 +57,7 @@ class MusicCardWithGetSongs extends Component {
             checked={ isFavorite }
             onChange={ this.favSongCheck }
           />
-
-        </label>
+        </div>
       </div>
     );
   }

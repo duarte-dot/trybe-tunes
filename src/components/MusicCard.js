@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
-import Loading from './Loading';
+// import Loading from './Loading';
 
 class MusicCard extends Component {
   state = {
@@ -34,35 +34,33 @@ class MusicCard extends Component {
     const { trackId, trackName, previewUrl } = this.props;
     const { isFavorite, isLoading } = this.state;
     if (isLoading) {
-      return <Loading />;
+      return <p>Carregando...</p>;
     }
     return (
-      <div
-        style={ {
-          marginTop: '40px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center' } }
-      >
+      <div className="test">
         <p>{trackName}</p>
-        <audio data-testid="audio-component" src={ previewUrl } controls>
-          <track kind="captions" />
-          O seu navegador não suporta o elemento
-          {' '}
-          <code>audio</code>
-        </audio>
-        <label htmlFor="checkb">
-          Favorita
-          <input
-            data-testid={ `checkbox-music-${trackId}` }
-            type="checkbox"
-            name="checkb"
-            id="checkb"
-            checked={ isFavorite }
-            onChange={ this.favSongCheck }
-          />
-
-        </label>
+        <div className="test">
+          <audio
+            data-testid="audio-component"
+            src={ previewUrl }
+            controls
+          >
+            <track kind="captions" />
+            O seu navegador não suporta o elemento
+            {' '}
+            <code>audio</code>
+          </audio>
+          <label htmlFor="checkb" className="heart-checkbox">
+            <input
+              data-testid={ `checkbox-music-${trackId}` }
+              type="checkbox"
+              name="checkb"
+              id="checkb"
+              checked={ isFavorite }
+              onChange={ this.favSongCheck }
+            />
+          </label>
+        </div>
       </div>
     );
   }

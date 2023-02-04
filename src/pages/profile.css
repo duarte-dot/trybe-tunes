@@ -1,0 +1,88 @@
+.page-profile {
+  display: flex;
+  justify-content: left;
+  /* overflow-y: hidden; */
+}
+
+
+.main-content-profile {
+  width: 80%;
+  height: 100vh;
+  background-color: #EFF3F9;
+  padding: 20px;
+  /* margin-left: 20px;
+  overflow-y: hidden; */
+}
+
+.form-edit-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+  max-width: 400px;
+}
+
+.form-edit-profile div {
+  text-align: center;
+  margin-left: 30px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+}
+
+label div {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.input-text-edit-name,
+textarea {
+  padding: 0.5em;
+  border-radius: 5px;
+  border: 1px solid gray;
+  font-size: 1em;
+  width: 100%;
+  margin-left: 10px;
+}
+
+/* button {
+  background-color: blue;
+  color: white;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  border: none;
+  font-size: 1em;
+  margin-top: 1em;
+  cursor: pointer;
+} */
+
+button[type="submit"]:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.link-edit-profile {
+  position: absolute;
+  bottom: 10px;
+  right: 50px;
+}
+
+.email-user {
+  margin-bottom: 30px;
+  margin-top: 0px;
+}
+
+.name-user{
+  margin-bottom: 30px;
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
+.section-name {
+  font-size: 30px;
+}

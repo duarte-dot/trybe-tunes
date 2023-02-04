@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { UilSearch, UilUser, UilFavorite } from '@iconscout/react-unicons';
 import { getUser } from '../services/userAPI';
-import Loading from './Loading';
+import './header.css';
 
 class Header extends Component {
   constructor() {
     super();
 
     this.state = {
-      loading: false,
+      loading: true,
       user: '',
     };
   }
@@ -26,54 +27,39 @@ class Header extends Component {
   render() {
     const { loading, user } = this.state;
     return (
-      <header data-testid="header-component">
-        <section
-          style={ {
-            display: 'flex',
-            justifyContent: 'space-between',
-            backgroundColor: '#EFF3F9',
-            padding: '15px' } }
-        >
-          <h1>TrybeTunes</h1>
-          <div style={ { display: 'flex', alignItems: 'center' } }>
-            <span data-testid="header-user-name">
-              {
-                loading ? <Loading /> : user
-              }
-            </span>
-          </div>
+
+      <header data-testid="header-component" className="sidebar">
+        <section>
+          <a href="/search">
+            <h1>TrybeTunes</h1>
+          </a>
+          <h4 data-testid="header-user-name">
+            {loading ? 'Carregando...' : user}
+          </h4>
         </section>
-        <section
-          style={ {
-            display: 'flex',
-            justifyContent: 'space-around',
-            backgroundColor: '#9D5C63',
-            marginBottom: '5px',
-            alignItems: 'center',
-          } }
-        >
+        <section className="links">
           <Link
-            style={ {
-              color: 'black' } }
+            className="link-"
             to="/search"
             data-testid="link-to-search"
           >
+            <UilSearch className="search-icon" />
             search
           </Link>
           <Link
-            style={ {
-              color: 'black' } }
+            className="link-"
             to="/favorites"
             data-testid="link-to-favorites"
           >
+            <UilFavorite className="favorite-icon" />
             favorites
           </Link>
           <Link
-            style={ {
-              color: 'black' } }
+            className="link-"
             to="/profile"
             data-testid="link-to-profile"
           >
+            <UilUser className="profile-icon" />
             profile
           </Link>
         </section>

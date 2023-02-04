@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from '../components/Loading';
 import MusicCardWithGetSongs from '../components/MusicCardWithGetSongs';
+import './favorites.css';
 
 class Favorites extends Component {
   constructor() {
@@ -24,13 +25,12 @@ class Favorites extends Component {
   // }
 
   getSongs = async () => {
-    this.setState({ isLoading: true });
+    // this.setState({ isLoading: true });
     const favoriteSongs = await getFavoriteSongs();
     this.setState({
       favoriteSongs,
       isLoading: false,
     });
-    console.log('getsongs');
   };
 
   render() {
@@ -40,20 +40,24 @@ class Favorites extends Component {
         <Loading />
       );
     } return (
-      <div data-testid="page-favorites">
+      <div data-testid="page-favorites" className="page-favorites">
         <Header />
-        <h2>Favorites</h2>
-        {favoriteSongs.map((song, index) => (
-          <MusicCardWithGetSongs
-            trackName={ song.trackName }
-            previewUrl={ song.previewUrl }
-            trackId={ song.trackId }
-            songObj={ song }
-            checked
-            key={ index }
-            getSongs={ this.getSongs }
-          />
-        ))}
+        <div className="main-content-favorites">
+          <h2 className="section-name">Favorites</h2>
+          <div className="favorite-songs">
+            {favoriteSongs.map((song, index) => (
+              <MusicCardWithGetSongs
+                trackName={ song.trackName }
+                previewUrl={ song.previewUrl }
+                trackId={ song.trackId }
+                songObj={ song }
+                checked
+                key={ index }
+                getSongs={ this.getSongs }
+              />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

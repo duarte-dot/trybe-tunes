@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
+import './login.css';
 
 class Login extends Component {
   constructor() {
@@ -53,17 +54,14 @@ class Login extends Component {
       return <Loading />;
     }
     return (
-      <div data-testid="page-login">
-        <h2>Login</h2>
-        <form
-          onSubmit={ this.createUserRedirect }
-        >
-          <div>
+      <div data-testid="page-login" className="page-login">
+        <div className="form-login">
+          <h2>Login</h2>
+          <form onSubmit={ this.createUserRedirect }>
             <label htmlFor="login">
-              <div>
-                Name:
-              </div>
               <input
+                placeholder="qual é o seu nome?"
+                className="input-name-login"
                 type="text"
                 id="login"
                 name="login"
@@ -72,14 +70,15 @@ class Login extends Component {
               />
             </label>
             <button
+              className="button-login"
               type="submit"
               data-testid="login-submit-button"
               disabled={ isLoginButtonDisabled }
             >
               Entrar
             </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

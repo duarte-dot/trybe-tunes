@@ -5,6 +5,7 @@ import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import './album.css';
 
 class Album extends Component {
   state = {
@@ -33,7 +34,6 @@ class Album extends Component {
     if (isLoading) {
       return (
         <div data-testid="page-album">
-          <Header />
           <Loading />
         </div>
       );
@@ -42,55 +42,48 @@ class Album extends Component {
     if (requestR.length >= 1) {
       const { favoriteSongs } = this.state;
       return (
-        <section data-testid="page-album">
+        <section data-testid="page-album" className="page-album">
           <Header />
-          <div
-            style={ {
-              flexDirection: 'column',
-              display: 'flex',
-              alignItems: 'center',
-              marginTop: '20px' } }
-          >
+          <div className="main-content-album">
             <img width="100px" src={ requestR[0].artworkUrl60 } alt="" />
             <h1
-              style={ { marginBottom: '10px' } }
               data-testid="artist-name"
             >
               {requestR[0].artistName}
             </h1>
             <h3
-              style={ {
-                marginTop: '0px' } }
               data-testid="album-name"
             >
               {requestR[0].collectionName}
             </h3>
-          </div>
-          {requestR.map((song, index) => {
-            if (!song.trackName) {
-              return;
-            }
-            for (let i = 0; i < favoriteSongs.length; i += 1) {
-              if (favoriteSongs[i].trackId === song.trackId) {
+            <div className="songs">
+              {requestR.map((song, index) => {
+                if (!song.trackName) {
+                  return;
+                }
+                for (let i = 0; i < favoriteSongs.length; i += 1) {
+                  if (favoriteSongs[i].trackId === song.trackId) {
+                    return (<MusicCard
+                      trackName={ song.trackName }
+                      previewUrl={ song.previewUrl }
+                      trackId={ song.trackId }
+                      songObj={ song }
+                      checked
+                      key={ index }
+                    />);
+                  }
+                }
                 return (<MusicCard
+                  songObj={ song }
                   trackName={ song.trackName }
                   previewUrl={ song.previewUrl }
                   trackId={ song.trackId }
-                  songObj={ song }
-                  checked
                   key={ index }
+                  checked={ false }
                 />);
-              }
-            }
-            return (<MusicCard
-              songObj={ song }
-              trackName={ song.trackName }
-              previewUrl={ song.previewUrl }
-              trackId={ song.trackId }
-              key={ index }
-              checked={ false }
-            />);
-          })}
+              })}
+            </div>
+          </div>
         </section>
       );
     }

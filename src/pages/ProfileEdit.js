@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
+import './profile.css';
 
 class ProfileEdit extends Component {
   state = {
@@ -58,18 +59,21 @@ class ProfileEdit extends Component {
     const { isLoading, isLoginButtonDisabled, userInfoLogin } = this.state;
     if (isLoading) {
       return (
-        <div data-testid="page-profile-edit">
+        <div className="page-profile">
           <Header />
-          <h2>Profile edit</h2>
-          <Loading />
+          <div data-testid="page-profile-edit" className="main-content-profile">
+            <h2>Profile edit</h2>
+            <Loading />
+          </div>
         </div>
       );
     } return (
-      <div data-testid="page-profile-edit">
+      <div data-testid="page-profile-edit" className="page-profile">
         <Header />
-        <h2>Profile edit</h2>
-        <div>
+        <div className="main-content-profile">
+          <h2 className="section-name">Profile edit</h2>
           <form
+            className="form-edit-profile"
             onSubmit={ async (e) => {
               e.preventDefault();
               this.setState({ isLoading: true });
@@ -83,6 +87,7 @@ class ProfileEdit extends Component {
                 Name:
               </div>
               <input
+                className="input-text-edit-name"
                 type="text"
                 value={ userInfoLogin[0].name }
                 id="name"
@@ -96,6 +101,7 @@ class ProfileEdit extends Component {
                 E-mail:
               </div>
               <input
+                className="input-text-edit-name"
                 type="text"
                 value={ userInfoLogin[0].email }
                 id="email"
@@ -109,6 +115,7 @@ class ProfileEdit extends Component {
                 Description:
               </div>
               <textarea
+                maxLength="50"
                 id="description"
                 value={ userInfoLogin[0].description }
                 name="description"
@@ -121,6 +128,7 @@ class ProfileEdit extends Component {
                 Image:
               </div>
               <input
+                className="input-text-edit-name"
                 type="text"
                 value={ userInfoLogin[0].image }
                 id="image"

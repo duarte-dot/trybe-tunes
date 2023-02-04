@@ -1,33 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import './cardalbum.css';
 
 class CardAlbum extends Component {
   render() {
     const { artistName, collectionName, collectionId, imgUrl } = this.props;
     return (
-      <div
-        style={ {
-          width:
-          '350px',
-          display: 'flex',
-          backgroundColor: '#9D5C63',
-          margin: '2px',
-          padding: '10px',
-        } }
-      >
+      <div className="album">
         <Link
           to={ `/album/${collectionId}` }
           data-testid={ `link-to-album-${collectionId}` }
         >
           <img
-            src={ imgUrl }
+            src={ imgUrl.replace(/100x100bb.jpg/, '200x200bb.jpg') }
             alt={ artistName }
           />
-          <p style={ { color: 'black' } }>{artistName}</p>
-          <h2 style={ { color: 'white' } }>{collectionName}</h2>
+          <h2 className="music-name-album">{collectionName}</h2>
+          <p className="artist-name-album">{artistName}</p>
         </Link>
-
       </div>
     );
   }

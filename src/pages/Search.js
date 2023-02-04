@@ -3,6 +3,7 @@ import CardAlbum from '../components/CardAlbum';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import './search.css';
 
 class Search extends Component {
   constructor() {
@@ -19,6 +20,12 @@ class Search extends Component {
 
     this.onButtonClick = this.onButtonClick.bind(this);
   }
+
+  // componentDidMount() {
+  //   this.setState({
+  //     isLoading: false,
+  //   });
+  // }
 
   onInputChange = ({ target }) => {
     const { value } = target;
@@ -64,21 +71,66 @@ class Search extends Component {
     if (isLoading) {
       return (
         <div data-testid="page-search">
-          <Header />
           <Loading />
         </div>
       );
-    }
-
-    if (requestSucc) {
+    } if (requestSucc) {
       return (
-        <div data-testid="page-search">
+        <div data-testid="page-search" className="page-search">
           <Header />
-          <h2>Search</h2>
-          <form>
-            <label htmlFor="artist">
-              Artist:
+          <div className="main-content-search">
+            <h2 className="section-name">Search</h2>
+            <div className="testee">
+              <form className="form-search">
+                <input
+                  className="input-artist-after"
+                  type="text"
+                  id="artist"
+                  name="artist"
+                  value={ Artist }
+                  data-testid="search-artist-input"
+                  onChange={ this.onInputChange }
+                />
+                <button
+                  className="button-search"
+                  type="submit"
+                  disabled={ isLoginButtonDisabled }
+                  data-testid="search-artist-button"
+                  onClick={ this.onButtonClick }
+                >
+                  Pesquisar
+                </button>
+              </form>
+            </div>
+            <h3 className="results-text">
+              Resultado de álbuns de:
+              {' '}
+              {artistName}
+            </h3>
+            <div className="albums">
+              {requestR.length === 0 ? <h1>Nenhum álbum foi encontrado</h1>
+                : requestR.map((album, index) => (
+                  <CardAlbum
+                    imgUrl={ album.artworkUrl100 }
+                    artistName={ album.artistName }
+                    collectionName={ album.collectionName }
+                    collectionId={ album.collectionId }
+                    key={ index }
+                  />
+                ))}
+            </div>
+          </div>
+        </div>
+      );
+    } return (
+      <div data-testid="page-search" className="page-search">
+        <Header />
+        <div className="main-content-search">
+          <h2 className="section-name">Search</h2>
+          <div className="testee">
+            <form className="form-search">
               <input
+                className="input-artist"
                 type="text"
                 id="artist"
                 name="artist"
@@ -86,62 +138,17 @@ class Search extends Component {
                 data-testid="search-artist-input"
                 onChange={ this.onInputChange }
               />
-            </label>
-            <button
-              type="submit"
-              disabled={ isLoginButtonDisabled }
-              data-testid="search-artist-button"
-              onClick={ this.onButtonClick }
-            >
-              Pesquisar
-            </button>
-          </form>
-          <h3>
-            Resultado de álbuns de:
-            {' '}
-            {artistName}
-          </h3>
-          <div>
-            {requestR.length === 0 ? <h1>Nenhum álbum foi encontrado</h1>
-              : requestR.map((album, index) => (
-                <CardAlbum
-                  imgUrl={ album.artworkUrl100 }
-                  artistName={ album.artistName }
-                  collectionName={ album.collectionName }
-                  collectionId={ album.collectionId }
-                  key={ index }
-                />
-              ))}
+              <button
+                type="submit"
+                disabled={ isLoginButtonDisabled }
+                data-testid="search-artist-button"
+                onClick={ this.onButtonClick }
+              >
+                Pesquisar
+              </button>
+            </form>
           </div>
         </div>
-      );
-    }
-
-    return (
-      <div data-testid="page-search">
-        <Header />
-        <h2>Search</h2>
-        <form>
-          <label htmlFor="artist">
-            Artist:
-            <input
-              type="text"
-              id="artist"
-              name="artist"
-              value={ Artist }
-              data-testid="search-artist-input"
-              onChange={ this.onInputChange }
-            />
-          </label>
-          <button
-            type="submit"
-            disabled={ isLoginButtonDisabled }
-            data-testid="search-artist-button"
-            onClick={ this.onButtonClick }
-          >
-            Pesquisar
-          </button>
-        </form>
       </div>
     );
   }

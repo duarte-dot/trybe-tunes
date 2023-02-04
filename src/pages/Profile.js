@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import { getUser } from '../services/userAPI';
 import CardProfile from '../components/CardProfile';
 import Loading from '../components/Loading';
+import './profile.css';
 
 class Profile extends Component {
   state = {
@@ -27,24 +28,27 @@ class Profile extends Component {
     const { userInfoLogin, isLoading } = this.state;
     if (isLoading) {
       return (
-        <div data-testid="page-profile">
+        <div className="page-profile">
           <Header />
-          <h2>Profile</h2>
-          <Loading />
+          <div data-testid="page-profile" className="main-content-profile">
+            <Loading />
+          </div>
         </div>
       );
     } return (
-      <div data-testid="page-profile">
+      <div data-testid="page-profile" className="page-profile">
         <Header />
-        <h2>Profile</h2>
-        { userInfoLogin.map((e, index) => (<CardProfile
-          name={ e.name }
-          email={ e.email }
-          image={ e.image }
-          description={ e.description }
-          key={ index }
-        />))}
-        <Link to="/profile/edit">Editar perfil</Link>
+        <div className="main-content-profile">
+          <h2 className="section-name">Profile</h2>
+          { userInfoLogin.map((e, index) => (<CardProfile
+            name={ e.name }
+            email={ e.email }
+            image={ e.image }
+            description={ e.description }
+            key={ index }
+          />))}
+        </div>
+        <Link className="link-edit-profile" to="/profile/edit">Editar perfil</Link>
       </div>
     );
   }
