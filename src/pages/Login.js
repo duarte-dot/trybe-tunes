@@ -60,7 +60,7 @@ class Login extends Component {
           <form onSubmit={ this.createUserRedirect }>
             <label htmlFor="login">
               <input
-                placeholder="qual é o seu nome?"
+                placeholder="what's your name?"
                 className="input-name-login"
                 type="text"
                 id="login"
@@ -75,7 +75,7 @@ class Login extends Component {
               data-testid="login-submit-button"
               disabled={ isLoginButtonDisabled }
             >
-              Entrar
+              Login
             </button>
           </form>
         </div>
