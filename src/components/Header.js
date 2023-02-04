@@ -30,9 +30,7 @@ class Header extends Component {
     return (
       <header data-testid="header-component" className="sidebar">
         <section>
-          <a href="/search">
-            <h1>TrybeTunes</h1>
-          </a>
+          <Link to="/search"><h1>TrybeTunes</h1></Link>
           <img className="image-profile-header" src={ image !== '' ? image : 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg' } alt="profile" />
           <h4 data-testid="header-user-name">
             {
