@@ -36,7 +36,7 @@ class MusicCardWithGetSongs extends Component {
     const { trackId, trackName, previewUrl } = this.props;
     const { isFavorite, isLoading } = this.state;
     if (isLoading) {
-      return <p>Loading...</p>;
+      return <p>loading...</p>;
     }
     return (
       <div className="testFavorites">

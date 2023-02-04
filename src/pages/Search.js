@@ -98,17 +98,17 @@ class Search extends Component {
                   data-testid="search-artist-button"
                   onClick={ this.onButtonClick }
                 >
-                  Pesquisar
+                  Search
                 </button>
               </form>
             </div>
             <h3 className="results-text">
-              Resultado de álbuns de:
-              {' '}
               {artistName}
+              {' '}
+              album results
             </h3>
             <div className="albums">
-              {requestR.length === 0 ? <h1>Nenhum álbum foi encontrado</h1>
+              {requestR.length === 0 ? <h1>no album was found</h1>
                 : requestR.map((album, index) => (
                   <CardAlbum
                     imgUrl={ album.artworkUrl100 }
@@ -145,7 +145,7 @@ class Search extends Component {
                 data-testid="search-artist-button"
                 onClick={ this.onButtonClick }
               >
-                Pesquisar
+                Search
               </button>
             </form>
           </div>
