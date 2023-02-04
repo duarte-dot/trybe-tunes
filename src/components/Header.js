@@ -11,6 +11,7 @@ class Header extends Component {
     this.state = {
       loading: true,
       user: '',
+      image: '',
     };
   }
 
@@ -21,20 +22,23 @@ class Header extends Component {
   async getName() {
     this.setState({ loading: true });
     const user = await getUser();
-    this.setState({ loading: false, user: user.name });
+    this.setState({ loading: false, user: user.name, image: user.image });
   }
 
   render() {
-    const { loading, user } = this.state;
+    const { loading, user, image } = this.state;
     return (
-
       <header data-testid="header-component" className="sidebar">
         <section>
           <a href="/search">
             <h1>TrybeTunes</h1>
           </a>
+          <img className="image-profile-header" src={ image !== '' ? image : 'https://t3.ftcdn.net/jpg/03/46/83/96/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg' } alt="profile" />
           <h4 data-testid="header-user-name">
-            {loading ? 'Carregando...' : user}
+            {
+              loading ? <p className="name-user-header">Loading...</p>
+                : <p className="name-user-header">{user}</p>
+            }
           </h4>
         </section>
         <section className="links">

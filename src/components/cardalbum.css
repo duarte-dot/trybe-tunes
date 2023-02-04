@@ -11,6 +11,8 @@ p {
 img {
   border-radius: 9px;
   margin-right: 10px;
+  max-height: 250px;
+  max-width: 250px;
 }
 
 a {

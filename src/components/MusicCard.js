@@ -34,7 +34,7 @@ class MusicCard extends Component {
     const { trackId, trackName, previewUrl } = this.props;
     const { isFavorite, isLoading } = this.state;
     if (isLoading) {
-      return <p>Carregando...</p>;
+      return <p>Loading...</p>;
     }
     return (
       <div className="test">

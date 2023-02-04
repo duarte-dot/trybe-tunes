@@ -7,10 +7,10 @@ class CardProfile extends Component {
     const { name, email, image, description } = this.props;
     return (
       <div>
-        <p className="name-user">{name}</p>
-        <p className="email-user">{email}</p>
-        <img data-testid="profile-image" alt="profile" src={ image } />
-        <p>{description}</p>
+        <p className="name-user">{name || 'seu nome'}</p>
+        <p className="email-user">{ email || 'email@email.com'}</p>
+        <img data-testid="profile-image" alt="profile" src={ image || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' } />
+        <p>{description || 'descrição'}</p>
       </div>
     );
   }

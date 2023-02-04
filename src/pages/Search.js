@@ -131,6 +131,7 @@ class Search extends Component {
             <form className="form-search">
               <input
                 className="input-artist"
+                placeholder="insert artist/band"
                 type="text"
                 id="artist"
                 name="artist"
