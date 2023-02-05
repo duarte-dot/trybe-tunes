@@ -1,18 +1,21 @@
-h2 {
-  font-size: 12px;
+.cardAlbum-music-name-album {
+  font-size: 20px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-p {
+.cardAlbum-artist-name-album {
   font-size: 9px;
   margin-bottom: 50px;
   max-width: 200px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
-img {
+.cardAlbum-img {
   border-radius: 9px;
   margin-right: 10px;
   max-height: 250px;
   max-width: 250px;
+  box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.1);
 }
 
 a {
@@ -23,22 +26,17 @@ a {
   max-width: 200px;
 }
 
-p {
-  font-size: 20px;
-}
-
-
 audio {
   margin-bottom: 50px;
   margin-left: 30px;
   margin-right: 30px
 }
 
-.test {
+.audio-and-checkbox {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1000px;
+  /* max-width: 1000px; */
 }
 
 input[type=checkbox] {
@@ -53,4 +51,78 @@ input[type=checkbox] {
 .artist-name-album {
   font-size: 12px;
   color: #313a47;
+}
+
+.audio-and-checkbox {
+  display: flex;
+}
+
+.song {
+  display: flex;
+}
+
+.song-name {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+
+
+
+
+@media all and (max-width: 1366px) {
+  .cardAlbum-music-name-album {
+    font-size: 20px;
+  }
+  
+  .cardAlbum-artist-name-album {
+    font-size: 9px;
+    margin-bottom: 50px;
+    max-width: 200px;
+  }
+  
+  .cardAlbum-img {
+    border-radius: 9px;
+    margin-right: 10px;
+    max-height: 250px;
+    max-width: 250px;
+  }
+  
+  a {
+    color: black;
+  }
+  
+  .album {
+    max-width: 200px;
+  }
+  
+  audio {
+    margin-bottom: 50px;
+    margin-left: 30px;
+    margin-right: 30px
+  }
+  
+  .test {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1000px;
+  }
+  
+  input[type=checkbox] {
+    width: 30px;
+  }
+  
+  .music-name-album {
+    margin-bottom: 0px;
+    font-size: 20px;
+  }
+  
+  .artist-name-album {
+    font-size: 12px;
+    color: #313a47;
+  }
 }

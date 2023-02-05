@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { createUser } from '../services/userAPI';
-import Loading from '../components/Loading';
 import './login.css';
+import Loading from '../components/Loading';
 
 class Login extends Component {
   constructor() {
@@ -55,20 +55,18 @@ class Login extends Component {
     }
     return (
       <div data-testid="page-login" className="page-login">
-        <div className="form-login">
-          <h2>Login</h2>
-          <form onSubmit={ this.createUserRedirect }>
-            <label htmlFor="login">
-              <input
-                placeholder="what's your name?"
-                className="input-name-login"
-                type="text"
-                id="login"
-                name="login"
-                data-testid="login-name-input"
-                onChange={ this.onInputChange }
-              />
-            </label>
+        <div className="box-login">
+          <form className="form-login" onSubmit={ this.createUserRedirect }>
+            <h2 className="login-title">Login</h2>
+            <input
+              placeholder="what's your name?"
+              className="input-name-login"
+              type="text"
+              id="login"
+              name="login"
+              data-testid="login-name-input"
+              onChange={ this.onInputChange }
+            />
             <button
               className="button-login"
               type="submit"

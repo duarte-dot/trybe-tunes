@@ -115,7 +115,7 @@ class ProfileEdit extends Component {
                 Description:
               </div>
               <textarea
-                maxLength="50"
+                maxLength="500"
                 id="description"
                 value={ userInfoLogin[0].description }
                 name="description"
@@ -128,6 +128,7 @@ class ProfileEdit extends Component {
                 Image:
               </div>
               <input
+                placeholder="your image link here"
                 className="input-text-edit-name"
                 type="text"
                 value={ userInfoLogin[0].image }
@@ -143,7 +144,7 @@ class ProfileEdit extends Component {
               data-testid="edit-button-save"
               disabled={ isLoginButtonDisabled }
             >
-              Editar perfil
+              edit profile
             </button>
           </form>
         </div>

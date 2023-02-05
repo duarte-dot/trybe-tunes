@@ -25,7 +25,7 @@ class Favorites extends Component {
   // }
 
   getSongs = async () => {
-    // this.setState({ isLoading: true });
+    this.setState({ isLoading: true });
     const favoriteSongs = await getFavoriteSongs();
     this.setState({
       favoriteSongs,
@@ -37,14 +37,21 @@ class Favorites extends Component {
     const { favoriteSongs, isLoading } = this.state;
     if (isLoading === true) {
       return (
-        <Loading />
+        <div data-testid="page-album" className="page-album">
+          <Header />
+          <div className="main-content-album">
+            <Loading />
+          </div>
+        </div>
       );
     } return (
-      <div data-testid="page-favorites" className="page-favorites">
+      <div data-testid="page-album" className="page-album">
         <Header />
-        <div className="main-content-favorites">
-          <h2 className="section-name">Favorites</h2>
-          <div className="favorite-songs">
+        <div className="main-content-album">
+          <div className="section-favorites-name">
+            <h2 className="section-name">Favorites</h2>
+          </div>
+          <div className="songs">
             {favoriteSongs.map((song, index) => (
               <MusicCardWithGetSongs
                 trackName={ song.trackName }

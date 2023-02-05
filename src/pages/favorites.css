@@ -27,11 +27,6 @@
   max-width: 1000px;
 }
 
-p {
-  font-weight: bold;
-  margin-bottom: 0px;
-}
-
 input[type="checkbox"]:checked {
   box-shadow: none;
   border: none;
@@ -48,4 +43,8 @@ input[type="checkbox"]:checked::before {
   position: absolute;
   top: -18px;
   left: 9px;
+}
+
+.section-favorites-name {
+margin-bottom: 12%;
 }

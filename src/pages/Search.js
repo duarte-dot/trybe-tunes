@@ -70,8 +70,12 @@ class Search extends Component {
 
     if (isLoading) {
       return (
-        <div data-testid="page-search">
-          <Loading />
+        <div data-testid="page-search" className="page-search">
+          <Header />
+          <div className="main-content-search">
+            <h2 className="section-name">Search</h2>
+            <Loading />
+          </div>
         </div>
       );
     } if (requestSucc) {
@@ -80,10 +84,11 @@ class Search extends Component {
           <Header />
           <div className="main-content-search">
             <h2 className="section-name">Search</h2>
-            <div className="testee">
+            <div className="form-div">
               <form className="form-search">
                 <input
                   className="input-artist-after"
+                  placeholder="insert artist/band"
                   type="text"
                   id="artist"
                   name="artist"
@@ -102,11 +107,13 @@ class Search extends Component {
                 </button>
               </form>
             </div>
-            <h3 className="results-text">
-              {artistName}
-              {' '}
-              album results
-            </h3>
+            <div className="results-text-div">
+              <h3 className="results-text">
+                {artistName}
+                {' '}
+                album results
+              </h3>
+            </div>
             <div className="albums">
               {requestR.length === 0 ? <h1>no album was found</h1>
                 : requestR.map((album, index) => (

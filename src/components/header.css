@@ -1,71 +1,100 @@
-*{
-  margin: 0;
-}
-
-body {
-  max-height: 100vh;
-  overflow-y:  hidden;
-}
-
-.wrapper {
-  display: flex;
-  height: 100vh;
+.header-title {
+  max-height: 50px;
+  font-size: 32px;
 }
 
 .sidebar {
-  margin-top: 0;
-  position: relative;
-  min-width: 250px;
-  background-color: #FFFFFF;
-  padding: 20px;
-  overflow: hidden;
-}
-
-.links {
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
-  /* align-items: center; */
-  margin-top: 50%;
-  margin-left: 110px;
-  justify-content: center;
-  text-align: start;
+  width: 16%;
+  max-height: 96vh;
+  background-color: #FFFFFF;
+  padding: 1%;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
-.link- {
-  font-size: 16px;
-  color: #444955;
-  text-decoration: none;
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
-
-
-.profile-icon {
-  position: absolute;
-  left: 76px;
-}
-
-.search-icon {
-  position: absolute;
-  left: 80px;
-}
-
-.favorite-icon {
-  position: absolute;
-  left: 78px;
-  /* bottom: 284px; */
+@media all and (max-width: 1280px) {
+  .sidebar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 15%;
+    background-color: #FFFFFF;
+    padding: 20px;
+    overflow-y: hidden;
+  }
 }
 
 .link {
-  margin-top: 40px;
+  display: flex;
+  text-align: end;
+  flex-direction: row;
+  align-content: stretch;
+  align-items: stretch;
+  padding: 10px;
+  max-width: 100%;
+  margin-bottom: 10%;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 
-li {
-  list-style-type: none;
+.link:hover {
+  background-color: bisque;
 }
 
-h4 {
+/* .header-username{ */
+  /* margin-left: 20px;
+  font-size: 18px; */
+/* } */
+
+.search-header-link {
+  /* padding-right: 30%; */
+  display: inline-block;
+  text-align: start;
+}
+.search-icon {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+
+.profile-header-link {
+  display: inline-block;
+  text-align: start;
+}
+.profile-icon {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.favorite-header-link {
+  display: inline-block;
+  text-align: start;
+}
+.favorite-icon {
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.header-user-name {
   position: absolute;
-  margin-top: 465px;
+  /* margin-top: 465px; */
   margin-left: 70px;
+}
+
+.image-profile-header {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  bottom: 70px;
+  left: 32px;
+}
+
+.user-info-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }

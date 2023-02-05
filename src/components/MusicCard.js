@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
-// import Loading from './Loading';
 
 class MusicCard extends Component {
   state = {
@@ -34,12 +33,15 @@ class MusicCard extends Component {
     const { trackId, trackName, previewUrl } = this.props;
     const { isFavorite, isLoading } = this.state;
     if (isLoading) {
-      return <p>loading...</p>;
+      return <p style={ { marginTop: '40px', marginBottom: '80px' } }>loading...</p>;
     }
     return (
-      <div className="test">
-        <p>{trackName}</p>
-        <div className="test">
+      <div>
+        <div className="song-name">
+          <p>{trackName}</p>
+        </div>
+        <div className="song" />
+        <div className="audio-and-checkbox">
           <audio
             data-testid="audio-component"
             src={ previewUrl }
@@ -62,6 +64,7 @@ class MusicCard extends Component {
           </label>
         </div>
       </div>
+
     );
   }
 }

@@ -36,12 +36,15 @@ class MusicCardWithGetSongs extends Component {
     const { trackId, trackName, previewUrl } = this.props;
     const { isFavorite, isLoading } = this.state;
     if (isLoading) {
-      return <p>loading...</p>;
+      return <p style={ { marginTop: '40px', marginBottom: '80px' } }>loading...</p>;
     }
     return (
-      <div className="testFavorites">
-        <p>{trackName}</p>
-        <div className="testFavorites">
+      <div>
+        <div className="song-name">
+          <p>{trackName}</p>
+        </div>
+        <div className="song" />
+        <div className="audio-and-checkbox">
           <audio data-testid="audio-component" src={ previewUrl } controls>
             <track kind="captions" />
             O seu navegador não suporta o elemento

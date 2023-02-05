@@ -33,8 +33,11 @@ class Album extends Component {
 
     if (isLoading) {
       return (
-        <div data-testid="page-album">
-          <Loading />
+        <div data-testid="page-album" className="page-album">
+          <Header />
+          <div className="main-content-album">
+            <Loading />
+          </div>
         </div>
       );
     }
@@ -45,17 +48,19 @@ class Album extends Component {
         <section data-testid="page-album" className="page-album">
           <Header />
           <div className="main-content-album">
-            <img width="100px" src={ requestR[0].artworkUrl60 } alt="" />
-            <h1
-              data-testid="artist-name"
-            >
-              {requestR[0].artistName}
-            </h1>
-            <h3
-              data-testid="album-name"
-            >
-              {requestR[0].collectionName}
-            </h3>
+            <div className="album-info">
+              <img width="100px" src={ requestR[0].artworkUrl60 } alt="" />
+              <h1
+                data-testid="artist-name"
+              >
+                {requestR[0].artistName}
+              </h1>
+              <h3
+                data-testid="album-name"
+              >
+                {requestR[0].collectionName}
+              </h3>
+            </div>
             <div className="songs">
               {requestR.map((song, index) => {
                 if (!song.trackName) {

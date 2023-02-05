@@ -40,15 +40,17 @@ class Profile extends Component {
         <Header />
         <div className="main-content-profile">
           <h2 className="section-name">Profile</h2>
-          { userInfoLogin.map((e, index) => (<CardProfile
-            name={ e.name }
-            email={ e.email }
-            image={ e.image }
-            description={ e.description }
-            key={ index }
-          />))}
+          <div className="infos-userdois">
+            { userInfoLogin.map((e, index) => (<CardProfile
+              name={ e.name }
+              email={ e.email }
+              image={ e.image }
+              description={ e.description }
+              key={ index }
+            />))}
+            <Link className="link-edit-profile" to="/profile/edit">edit profile</Link>
+          </div>
         </div>
-        <Link className="link-edit-profile" to="/profile/edit">Editar perfil</Link>
       </div>
     );
   }

@@ -13,11 +13,12 @@ class CardAlbum extends Component {
           data-testid={ `link-to-album-${collectionId}` }
         >
           <img
+            className="cardAlbum-img"
             src={ imgUrl.replace(/100x100bb.jpg/, '200x200bb.jpg') }
             alt={ artistName }
           />
-          <h2 className="music-name-album">{collectionName}</h2>
-          <p className="artist-name-album">{artistName}</p>
+          <h2 className="cardAlbum-music-name-album">{collectionName}</h2>
+          <p className="cardAlbum-artist-name-album">{artistName}</p>
         </Link>
       </div>
     );
