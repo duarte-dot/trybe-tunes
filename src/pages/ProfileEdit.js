@@ -31,7 +31,7 @@ class ProfileEdit extends Component {
     const { userInfoLogin } = this.state;
     const min = 1;
     if (userInfoLogin[0].email.length >= min
-        && (/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(userInfoLogin[0].email))
+        && (/^([\w+-]+\.)*[\w+-]+@([\w+-]+\.)*[\w+-]+\.[a-zA-Z]{2,4}$/.test(userInfoLogin[0].email))
         && userInfoLogin[0].name.length >= min
         && userInfoLogin[0].description.length >= min
         && userInfoLogin[0].image.length >= min) {

@@ -51,7 +51,7 @@ class Favorites extends Component {
           <div className="section-favorites-name">
             <h2 className="section-name">Favorites</h2>
           </div>
-          <div className="songs">
+          <div className="favorite-songs">
             {favoriteSongs.map((song, index) => (
               <MusicCardWithGetSongs
                 trackName={ song.trackName }
