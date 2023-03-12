@@ -1,4 +1,6 @@
-# TrybeTunes | link do deploy: https://duarte-dot-trybetunes.surge.sh
+# TrybeTunes
+
+## Link do deploy: https://duarte-dot-trybetunes.surge.sh
 
 Este projeto é uma aplicação web que permite ao usuário pesquisar por artistas ou bandas e visualizar seus álbuns e músicas. O usuário pode reproduzir uma prévia das músicas dos álbuns, favoritar e desfavoritar músicas e visualizar a lista de músicas favoritas. Além disso, o usuário pode visualizar e editar seu perfil.
 
