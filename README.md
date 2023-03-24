@@ -27,11 +27,13 @@ Este projeto é uma aplicação web que permite ao usuário pesquisar por artist
 
 ## Como rodar o projeto
 
-Clone o repositório: git clone https://github.com/duarte-dot/trybe-tunes.git <br/>
-Entre na pasta do projeto: cd trybe-tunes <br/>
-Instale as dependências: npm install <br/>
-Inicie o servidor: npm start <br/>
-Acesse a aplicação no seu navegador em: http://localhost:3000 <br/>
+<ol>
+  <li>Clone o repositório: git clone https://github.com/duarte-dot/trybe-tunes.git</li>
+  <li>Entre na pasta do projeto: cd trybe-tunes</li>
+  <li>Instale as dependências: npm install</li>
+  <li>Inicie o servidor: npm start</li>
+  <li>Acesse a aplicação no seu navegador em: http://localhost:3000</li>
+</ol>
 
 ## Principais aprendizados
 
