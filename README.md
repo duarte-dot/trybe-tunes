@@ -35,6 +35,8 @@ Este projeto é uma aplicação web que permite ao usuário pesquisar por artist
   <li>Acesse a aplicação no seu navegador em: http://localhost:3000</li>
 </ol>
 
+Você também pode acessar através do <a target="_blank" href="http://duarte-dot-trybetunes.surge.sh">link de deploy</a>.
+
 ## Principais aprendizados
 
 <ul>
