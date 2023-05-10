@@ -20,12 +20,6 @@ class Search extends Component {
     this.onButtonClick = this.onButtonClick.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     isLoading: false,
-  //   });
-  // }
-
   onInputChange = ({ target }) => {
     const { value } = target;
     this.setState({

@@ -1,76 +1,65 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
 
+const MIN_NAME_LENGTH = 3;
+
 class Login extends Component {
   constructor() {
     super();
-    this.onInputChange = this.onInputChange.bind(this);
+    this.onNameInputChange = this.onNameInputChange.bind(this);
   }
 
   state = {
     name: '',
-    isLoginButtonDisabled: true,
-    isLoggedIn: false,
+    userLoggingIn: false,
   };
 
-  createUserRedirect = (event) => {
+  createUserAndRedirect = async (event) => {
     event.preventDefault();
+
     const { history } = this.props;
     const { name } = this.state;
 
-    this.setState({
-      isLoggedIn: true,
-    }, async () => {
-      await createUser({ name });
-      history.push('/search');
-    });
+    this.setState({ userLoggingIn: true });
+
+    await createUser({ name });
+
+    history.push('/search');
   };
 
-  onInputChange = ({ target }) => {
-    const { value } = target;
-    this.setState({
-      name: value,
-    }, () => {
-      const min = 3;
-      if (value.length >= min) {
-        this.setState({
-          isLoginButtonDisabled: false,
-        });
-      } else {
-        this.setState({
-          isLoginButtonDisabled: true,
-        });
-      }
-    });
+  onNameInputChange = (event) => {
+    const name = event.target.value;
+    this.setState({ name });
   };
 
   render() {
-    const { isLoginButtonDisabled, isLoggedIn } = this.state;
-    if (isLoggedIn) {
+    const { name, userLoggingIn } = this.state;
+    const loginButtonDisabled = name.length < MIN_NAME_LENGTH;
+
+    if (userLoggingIn) {
       return <Loading />;
     }
+
     return (
-      <div data-testid="page-login" className="page-login">
-        <div className="box-login">
-          <form className="form-login" onSubmit={ this.createUserRedirect }>
+      <div className="login-page">
+        <div className="login-box">
+          <form className="login-form" onSubmit={ this.createUserAndRedirect }>
+
             <h2 className="login-title">Login</h2>
+
             <input
-              placeholder="what's your name?"
-              className="input-name-login"
               type="text"
-              id="login"
-              name="login"
-              data-testid="login-name-input"
-              onChange={ this.onInputChange }
+              className="login-name-input"
+              placeholder="what's your name?"
+              onChange={ this.onNameInputChange }
             />
+
             <button
-              className="button-login"
               type="submit"
-              data-testid="login-submit-button"
-              disabled={ isLoginButtonDisabled }
+              className="button-login"
+              disabled={ loginButtonDisabled }
             >
               Login
             </button>
