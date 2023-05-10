@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import { getUser } from '../services/userAPI';
-import CardProfile from '../components/CardProfile';
+import ProfileCard from '../components/ProfileCard';
 import Loading from '../components/Loading';
 
 class Profile extends Component {
@@ -44,7 +44,7 @@ class Profile extends Component {
         <div className="main-content-profile">
           <h2 className="section-name">Profile</h2>
           <div className="infos-userdois">
-            { userInfoLogin.map((e, index) => (<CardProfile
+            { userInfoLogin.map((e, index) => (<ProfileCard
               name={ e.name }
               email={ e.email }
               image={ e.image }
