@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
 
@@ -59,7 +59,7 @@ class ProfileEdit extends Component {
     if (isLoading) {
       return (
         <div className="page-profile">
-          <Header />
+          <Sidebar />
           <div data-testid="page-profile-edit" className="main-content-profile">
             <h2>Profile edit</h2>
             <Loading />
@@ -68,7 +68,7 @@ class ProfileEdit extends Component {
       );
     } return (
       <div data-testid="page-profile-edit" className="page-profile">
-        <Header />
+        <Sidebar />
         <div className="main-content-profile">
           <h2 className="section-name">Profile edit</h2>
           <form

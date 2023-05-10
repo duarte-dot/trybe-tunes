@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from '../components/Loading';
 import MusicCardWithGetSongs from '../components/MusicCardWithGetSongs';
@@ -37,7 +37,7 @@ class Favorites extends Component {
     if (isLoading === true) {
       return (
         <div data-testid="page-album" className="page-album">
-          <Header />
+          <Sidebar />
           <div className="main-content-album">
             <Loading />
           </div>
@@ -45,7 +45,7 @@ class Favorites extends Component {
       );
     } return (
       <div data-testid="page-album" className="page-album">
-        <Header />
+        <Sidebar />
         <div className="main-content-album">
           <div className="section-favorites-name">
             <h2 className="section-name">Favorites</h2>

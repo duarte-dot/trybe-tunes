@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 import { getUser } from '../services/userAPI';
 import CardProfile from '../components/CardProfile';
 import Loading from '../components/Loading';
@@ -28,7 +28,7 @@ class Profile extends Component {
     if (isLoading) {
       return (
         <div className="page-profile">
-          <Header />
+          <Sidebar />
           <div data-testid="page-profile" className="main-content-profile">
             <Loading />
           </div>
@@ -36,7 +36,7 @@ class Profile extends Component {
       );
     } return (
       <div data-testid="page-profile" className="page-profile">
-        <Header />
+        <Sidebar />
         <div className="main-content-profile">
           <h2 className="section-name">Profile</h2>
           <div className="infos-userdois">

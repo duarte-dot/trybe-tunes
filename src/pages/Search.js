@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CardAlbum from '../components/CardAlbum';
-import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 
@@ -64,7 +64,7 @@ class Search extends Component {
     if (isLoading) {
       return (
         <div data-testid="page-search" className="page-search">
-          <Header />
+          <Sidebar />
           <div className="main-content-search">
             <h2 className="section-name">Search</h2>
             <Loading />
@@ -74,7 +74,7 @@ class Search extends Component {
     } if (requestSucc) {
       return (
         <div data-testid="page-search" className="page-search">
-          <Header />
+          <Sidebar />
           <div className="main-content-search">
             <h2 className="section-name">Search</h2>
             <div className="form-div">
@@ -124,7 +124,7 @@ class Search extends Component {
       );
     } return (
       <div data-testid="page-search" className="page-search">
-        <Header />
+        <Sidebar />
         <div className="main-content-search">
           <h2 className="section-name">Search</h2>
           <div className="testee">

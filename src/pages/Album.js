@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
@@ -33,7 +33,7 @@ class Album extends Component {
     if (isLoading) {
       return (
         <div data-testid="page-album" className="page-album">
-          <Header />
+          <Sidebar />
           <div className="main-content-album">
             <Loading />
           </div>
@@ -45,7 +45,7 @@ class Album extends Component {
       const { favoriteSongs } = this.state;
       return (
         <section data-testid="page-album" className="page-album">
-          <Header />
+          <Sidebar />
           <div className="main-content-album">
             <div className="album-info">
               <img width="100px" src={ requestR[0].artworkUrl60 } alt="" />
