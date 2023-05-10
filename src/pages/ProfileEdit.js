@@ -65,7 +65,7 @@ class ProfileEdit extends Component {
         <div className="page-profile">
           <Sidebar />
           <div data-testid="page-profile-edit" className="main-content-profile">
-            <h2>Profile edit</h2>
+            <h1>Profile edit</h1>
             <Loading />
           </div>
         </div>
@@ -74,7 +74,7 @@ class ProfileEdit extends Component {
       <div data-testid="page-profile-edit" className="page-profile">
         <Sidebar />
         <div className="main-content-profile">
-          <h2 className="section-name">Profile edit</h2>
+          <h1 className="section-name">Profile edit</h1>
           <form
             className="form-edit-profile"
             onSubmit={ async (e) => {

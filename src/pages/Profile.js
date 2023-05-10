@@ -42,7 +42,7 @@ class Profile extends Component {
       <div data-testid="page-profile" className="page-profile">
         <Sidebar />
         <div className="main-content-profile">
-          <h2 className="section-name">Profile</h2>
+          <h1 className="section-name">Profile</h1>
           <div className="infos-userdois">
             { userInfoLogin.map((e, index) => (<ProfileCard
               name={ e.name }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Sidebar from '../components/Sidebar';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from '../components/Loading';
-import MusicCardWithGetSongs from '../components/MusicCardWithGetSongs';
+import FavoritesPlayer from '../components/FavoritesPlayer';
 
 class Favorites extends Component {
   constructor() {
@@ -11,7 +11,6 @@ class Favorites extends Component {
     this.state = {
       isLoading: false,
       favoriteSongs: [],
-      // isFavorite: true,
     };
   }
 
@@ -19,22 +18,16 @@ class Favorites extends Component {
     this.getSongs();
   }
 
-  // componentDidUpdate() {
-  //   this.getSongs();
-  // }
-
   getSongs = async () => {
     this.setState({ isLoading: true });
     const favoriteSongs = await getFavoriteSongs();
-    this.setState({
-      favoriteSongs,
-      isLoading: false,
-    });
+    this.setState({ favoriteSongs, isLoading: false });
   };
 
   render() {
     const { favoriteSongs, isLoading } = this.state;
-    if (isLoading === true) {
+
+    if (isLoading) {
       return (
         <div data-testid="page-album" className="page-album">
           <Sidebar />
@@ -44,15 +37,14 @@ class Favorites extends Component {
         </div>
       );
     } return (
-      <div data-testid="page-album" className="page-album">
+      <div className="page-album">
         <Sidebar />
+
         <div className="main-content-album">
-          <div className="section-favorites-name">
-            <h2 className="section-name">Favorites</h2>
-          </div>
+          <h1 className="section-name">Favorites</h1>
           <div className="favorite-songs">
             {favoriteSongs.map((song, index) => (
-              <MusicCardWithGetSongs
+              <FavoritesPlayer
                 trackName={ song.trackName }
                 previewUrl={ song.previewUrl }
                 trackId={ song.trackId }

@@ -48,7 +48,7 @@ class Login extends Component {
         <div className="login-box">
           <form className="login-form" onSubmit={ this.createUserAndRedirect }>
 
-            <h2 className="login-title">Login</h2>
+            <h1 className="login-title">Login</h1>
 
             <input
               type="text"

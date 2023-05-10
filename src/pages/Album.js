@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
-import MusicCard from '../components/MusicCard';
+import AlbumsPlayer from '../components/AlbumsPlayer';
 import getMusics from '../services/musicsAPI';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
@@ -23,12 +23,12 @@ class Album extends Component {
 
   getMusics = async () => {
     this.setState({ isLoading: true });
+
     const { match: { params } } = this.props;
     const request = await getMusics(params.id);
     const requestFav = await getFavoriteSongs();
-    this.setState({ requestR: request,
-      isLoading: false,
-      favoriteSongs: requestFav });
+
+    this.setState({ requestR: request, isLoading: false, favoriteSongs: requestFav });
   };
 
   render() {
@@ -71,7 +71,7 @@ class Album extends Component {
                 }
                 for (let i = 0; i < favoriteSongs.length; i += 1) {
                   if (favoriteSongs[i].trackId === song.trackId) {
-                    return (<MusicCard
+                    return (<AlbumsPlayer
                       trackName={ song.trackName }
                       previewUrl={ song.previewUrl }
                       trackId={ song.trackId }
@@ -81,11 +81,10 @@ class Album extends Component {
                     />);
                   }
                 }
-                return (<MusicCard
+                return (<AlbumsPlayer
                   songObj={ song }
                   trackName={ song.trackName }
                   previewUrl={ song.previewUrl }
-                  trackId={ song.trackId }
                   key={ index }
                   checked={ false }
                 />);
