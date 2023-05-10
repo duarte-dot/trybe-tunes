@@ -5,7 +5,6 @@ import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
-import './album.css';
 
 class Album extends Component {
   state = {

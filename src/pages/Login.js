@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 // import { Redirect } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { createUser } from '../services/userAPI';
-import './login.css';
 import Loading from '../components/Loading';
 
 class Login extends Component {

@@ -1,26 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-*{
+/* Remove default padding and margin */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
   margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
 }
 
+/* Set default font family and size */
 body {
-  overflow-y:  hidden;
-  overflow-x: hidden;
-  font-family: 'Poppins', sans-serif
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  background-color: #F5F5F5;
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: #000000;
-  border-radius: 10px;
+/* Remove anchor text decoration */
+a {
+  text-decoration: none;
 }
 
-::-webkit-scrollbar-track {
-  background-color: #E5E5E5;
-  border-radius: 10px;
+/* Remove form input borders */
+input,
+select {
+  border: none;
+  outline: none;
+}
+
+/* Set default button styles */
+button {
+  background-color: #ccc;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px 0;
 }

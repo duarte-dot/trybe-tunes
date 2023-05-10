@@ -3,7 +3,6 @@ import Header from '../components/Header';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from '../components/Loading';
 import MusicCardWithGetSongs from '../components/MusicCardWithGetSongs';
-import './favorites.css';
 
 class Favorites extends Component {
   constructor() {

@@ -3,7 +3,6 @@ import CardAlbum from '../components/CardAlbum';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
-import './search.css';
 
 class Search extends Component {
   constructor() {

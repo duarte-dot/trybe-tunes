@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { UilSearch, UilUser, UilFavorite } from '@iconscout/react-unicons';
 import { getUser } from '../services/userAPI';
-import './header.css';
 
 class Header extends Component {
   constructor() {

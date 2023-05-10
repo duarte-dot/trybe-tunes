@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './cardalbum.css';
 
 class CardAlbum extends Component {
   render() {

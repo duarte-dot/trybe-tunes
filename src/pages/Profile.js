@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import { getUser } from '../services/userAPI';
 import CardProfile from '../components/CardProfile';
 import Loading from '../components/Loading';
-import './profile.css';
 
 class Profile extends Component {
   state = {
