@@ -22,10 +22,14 @@ const menuItems = [
 ];
 
 class Sidebar extends Component {
-  state = {
-    user: '',
-    image: '',
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      user: '',
+      image: '',
+    };
+  }
 
   componentDidMount() {
     this.getUserName();

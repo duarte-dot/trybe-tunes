@@ -6,10 +6,14 @@ import CardProfile from '../components/CardProfile';
 import Loading from '../components/Loading';
 
 class Profile extends Component {
-  state = {
-    userInfoLogin: [],
-    isLoading: true,
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      userInfoLogin: [],
+      isLoading: true,
+    };
+  }
 
   componentDidMount() {
     this.getUserInfo();

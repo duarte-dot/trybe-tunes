@@ -7,11 +7,15 @@ import getMusics from '../services/musicsAPI';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class Album extends Component {
-  state = {
-    requestR: [],
-    isLoading: false,
-    favoriteSongs: [],
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      requestR: [],
+      isLoading: false,
+      favoriteSongs: [],
+    };
+  }
 
   componentDidMount() {
     this.getMusics();

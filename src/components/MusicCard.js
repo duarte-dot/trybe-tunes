@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 class MusicCard extends Component {
-  state = {
-    isLoading: false,
-    isFavorite: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      isLoading: false,
+      isFavorite: false,
+    };
+  }
 
   componentDidMount() {
     const { checked } = this.props;

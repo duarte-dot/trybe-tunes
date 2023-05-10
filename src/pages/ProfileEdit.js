@@ -5,11 +5,15 @@ import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
 
 class ProfileEdit extends Component {
-  state = {
-    userInfoLogin: [],
-    isLoading: true,
-    isLoginButtonDisabled: true,
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      userInfoLogin: [],
+      isLoading: true,
+      isLoginButtonDisabled: true,
+    };
+  }
 
   componentDidMount() {
     this.getUserInfo();

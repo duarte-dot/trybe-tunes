@@ -8,13 +8,14 @@ const MIN_NAME_LENGTH = 3;
 class Login extends Component {
   constructor() {
     super();
+
+    this.state = {
+      name: '',
+      userLoggingIn: false,
+    };
+
     this.onNameInputChange = this.onNameInputChange.bind(this);
   }
-
-  state = {
-    name: '',
-    userLoggingIn: false,
-  };
 
   createUserAndRedirect = async (event) => {
     event.preventDefault();
