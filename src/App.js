@@ -12,39 +12,15 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <Switch>
-            <Route
-              path="/profile/edit"
-              component={ ProfileEdit }
-            />
-            <Route
-              path="/profile"
-              component={ Profile }
-            />
-            <Route
-              path="/favorites"
-              component={ Favorites }
-            />
-            <Route
-              path="/album/:id"
-              component={ Album }
-            />
-            <Route
-              path="/search"
-              component={ Search }
-            />
-            <Route
-              exact
-              path="/"
-              render={ (props) => <Login { ...props } /> }
-            />
-            <Route
-              path="*"
-              component={ NotFound }
-            />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path="/" render={ (props) => <Login { ...props } /> } />
+          <Route path="/profile/edit" component={ ProfileEdit } />
+          <Route path="/profile" component={ Profile } />
+          <Route path="/favorites" component={ Favorites } />
+          <Route path="/album/:id" component={ Album } />
+          <Route path="/search" component={ Search } />
+          <Route path="*" component={ NotFound } />
+        </Switch>
       </BrowserRouter>
     );
   }
