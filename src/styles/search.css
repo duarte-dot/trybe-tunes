@@ -1,0 +1,35 @@
+.section-name {
+  font-size: 2em;
+  margin-top: 8px;
+  margin-left: 8px;
+}
+
+.input-artist {
+  margin-left: 20px;
+  height: 35px;
+  margin-right: 5px;
+}
+
+.input-artist-after {
+  margin-left: 20px;
+  height: 35px;
+  margin-right: 5px;
+}
+
+.button-search:enabled {
+  background-color: hsla(45, 64%, 64%, 1);
+  color: white;
+}
+
+.results-text-div {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.albums {
+  padding: 2%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  scroll-behavior: smooth;
+}

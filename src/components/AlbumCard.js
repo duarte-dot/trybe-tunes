@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import '../styles/albumCard.css';
 
 class AlbumCard extends Component {
   render() {
@@ -11,7 +12,7 @@ class AlbumCard extends Component {
         <Link to={ `/album/${collectionId}` }>
           <img
             className="albumCard-image"
-            src={ imgUrl.replace(/100x100bb.jpg/, '200x200bb.jpg') }
+            src={ imgUrl.replace(/100x100bb.jpg/, '210x210bb.jpg') }
             alt={ artistName }
           />
 

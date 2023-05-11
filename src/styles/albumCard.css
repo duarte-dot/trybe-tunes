@@ -1,0 +1,8 @@
+.albumCard-image {
+  border-radius: 4%;
+}
+
+.album {
+  max-width: 200px;
+  padding-left: 14px;
+}

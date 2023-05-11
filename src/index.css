@@ -93,6 +93,7 @@ ol {
 /* Remove anchor text decoration */
 a {
   text-decoration: none;
+  color: rgb(10, 10, 10);
 }
 
 /* Remove form input borders */
@@ -107,8 +108,11 @@ button {
   background-color: #ccc;
   border: none;
   padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+  font-size: 14px;
   display: inline-block;
   margin: 10px 0;
+}
+
+button:enabled {
+  cursor: pointer;
 }

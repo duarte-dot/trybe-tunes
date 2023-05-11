@@ -3,6 +3,7 @@ import AlbumCard from '../components/AlbumCard';
 import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import '../styles/search.css';
 
 class Search extends Component {
   constructor() {
@@ -13,6 +14,7 @@ class Search extends Component {
       isLoading: false,
       request: {},
       requestDone: false,
+      artistSearched: '',
     };
   }
 
@@ -21,9 +23,8 @@ class Search extends Component {
   };
 
   onSearchButtonClick = async () => {
-    this.setState({ isLoading: true });
-
     const { artist } = this.state;
+    this.setState({ isLoading: true, artistSearched: artist, artist: '' });
 
     const request = await searchAlbumsAPI(artist);
 
@@ -35,7 +36,7 @@ class Search extends Component {
   };
 
   render() {
-    const { isLoading, request, requestDone, artist } = this.state;
+    const { isLoading, request, requestDone, artist, artistSearched } = this.state;
     const isLoginButtonDisabled = artist.length < 2;
 
     if (isLoading) {
@@ -77,7 +78,7 @@ class Search extends Component {
 
             <div className="results-text-div">
               <h3 className="results-text">
-                {artist}
+                {artistSearched}
                 {' '}
                 album results
               </h3>
