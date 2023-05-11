@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
+import '../styles/loginPage.css';
 
 const MIN_NAME_LENGTH = 3;
 
@@ -45,9 +46,15 @@ class Login extends Component {
 
     return (
       <div className="login-page">
+        <div className="logo">
+          <h1 className="logo-title">
+            <span>Trybe</span>
+            <span>Tunes</span>
+          </h1>
+          <img className="logo-image" src="https://github.com/duarte-dot/image-uploads/assets/78454964/061b23d4-f57e-4164-96fc-8560cd7a84a6" alt="logo" />
+        </div>
         <div className="login-box">
           <form className="login-form" onSubmit={ this.createUserAndRedirect }>
-
             <h1 className="login-title">Login</h1>
 
             <input
