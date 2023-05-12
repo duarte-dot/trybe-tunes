@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { removeSong } from '../services/favoriteSongsAPI';
+import '../styles/favorites.css';
 
 class FavoritesPlayer extends Component {
   constructor() {
@@ -22,7 +23,7 @@ class FavoritesPlayer extends Component {
   };
 
   render() {
-    const { trackName, previewUrl } = this.props;
+    const { trackName, previewUrl, artwork } = this.props;
     const { isLoading } = this.state;
 
     if (isLoading) {
@@ -35,15 +36,22 @@ class FavoritesPlayer extends Component {
           <p>{trackName}</p>
         </div>
 
-        <div className="audio-and-checkbox">
-          <audio src={ previewUrl } controls>
+        <div className="image-audio-and-checkbox">
+          <img className="img-song" width="50px" src={ artwork } alt="song" />
+
+          <audio className="audio-song" src={ previewUrl } controls>
             <track kind="captions" />
             O seu navegador não suporta o elemento
             {' '}
             <code>audio</code>
           </audio>
 
-          <input type="checkbox" checked onChange={ this.favSongCheck } />
+          <input
+            className="heart-checkbox"
+            type="checkbox"
+            checked
+            onChange={ this.favSongCheck }
+          />
         </div>
       </div>
     );
@@ -55,6 +63,7 @@ FavoritesPlayer.propTypes = {
   previewUrl: PropTypes.string.isRequired,
   songObj: PropTypes.shape({}).isRequired,
   getSongs: PropTypes.func.isRequired,
+  artwork: PropTypes.string.isRequired,
 };
 
 export default FavoritesPlayer;

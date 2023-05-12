@@ -109,7 +109,7 @@
 }
 
 @media screen and (min-width: 1200px) {
-  h1 {
+  h1.login-title {
     font-size: 2em;
     margin-bottom: 30px;
   }

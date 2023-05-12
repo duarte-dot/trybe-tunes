@@ -1,8 +1,15 @@
 .albumCard-image {
+  width: 150px;
   border-radius: 4%;
 }
 
 .album {
-  max-width: 200px;
-  padding-left: 14px;
+  width: 150px;
+  margin: 30px;
+}
+
+@media screen and (min-width: 992px) {
+  .albumCard-image {
+    width: 200px;
+  }
 }

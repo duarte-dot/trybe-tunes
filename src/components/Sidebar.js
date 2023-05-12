@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { UilSearch, UilBars, UilUser, UilFavorite } from '@iconscout/react-unicons';
+import { UilSearch,
+  UilMultiply,
+  UilBars,
+  UilUser,
+  UilFavorite } from '@iconscout/react-unicons';
 import { getUser } from '../services/userAPI';
 import '../styles/sidebar.css';
 
@@ -21,6 +25,8 @@ const menuItems = [
     icon: <UilFavorite className="icon" />,
   },
 ];
+
+const SMALL_SIZE_WINDOW = 992;
 
 class Sidebar extends Component {
   constructor() {
@@ -46,20 +52,38 @@ class Sidebar extends Component {
   }
 
   toggleMenu() {
-    const { showingMenu } = this.state;
-
-    if (showingMenu) {
-      this.setState({ showingMenu: false });
-    } else this.setState({ showingMenu: true });
+    if (window.innerWidth < SMALL_SIZE_WINDOW) {
+      const { showingMenu } = this.state;
+      if (showingMenu) {
+        this.setState({ showingMenu: false });
+      } else {
+        this.setState({ showingMenu: true });
+      }
+    }
   }
 
   render() {
     const { user, image, showingMenu } = this.state;
 
     return (
-      <div>
+      <div className="menus">
+        <h1 className="logo-title-sidebar">
+          <span>Trybe</span>
+          <span>Tunes</span>
+        </h1>
         <section className="nav-menu-and-user-info">
-          <UilBars size={ 50 } className="toggle-menu" onClick={ this.toggleMenu } />
+          <UilMultiply
+            size={ 50 }
+            className="toggle-close-menu"
+            style={ { display: showingMenu ? 'block' : 'none' } }
+            onClick={ this.toggleMenu }
+          />
+          <UilBars
+            size={ 50 }
+            className="toggle-menu"
+            style={ { display: showingMenu ? 'none' : 'block' } }
+            onClick={ this.toggleMenu }
+          />
           <div className="userimage-username">
             <img
               className="nav-user-profile-image"
@@ -78,7 +102,7 @@ class Sidebar extends Component {
           >
             {
               menuItems.map((item, index) => (
-                <section key={ index }>
+                <section className="section-with-links" key={ index }>
                   <Link className="link" to={ item.path } onClick={ this.toggleMenu }>
                     {item.icon}
                     <p className="link-text">{item.name}</p>

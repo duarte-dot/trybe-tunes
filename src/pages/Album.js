@@ -75,6 +75,7 @@ class Album extends Component {
                       trackName={ song.trackName }
                       previewUrl={ song.previewUrl }
                       trackId={ song.trackId }
+                      artwork={ song.artworkUrl100 }
                       songObj={ song }
                       checked
                       key={ index }
@@ -83,6 +84,7 @@ class Album extends Component {
                 }
                 return (<AlbumsPlayer
                   songObj={ song }
+                  artwork={ song.artworkUrl100 }
                   trackName={ song.trackName }
                   previewUrl={ song.previewUrl }
                   key={ index }

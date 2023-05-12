@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/profile.css';
 
 class CardProfile extends Component {
   render() {
@@ -8,7 +9,7 @@ class CardProfile extends Component {
       <div className="infos-user">
         <h1 className="name-user">{name || 'seu nome'}</h1>
         <p className="email-user">{ email || 'email@email.com'}</p>
-        <img data-testid="profile-image" className="image-profile" alt="profile" src={ image || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' } />
+        <img className="profile-image" width="200" alt="profile" src={ image || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' } />
         <div className="description-box">
           <p className="description-user">{description || <p>descrição</p>}</p>
         </div>

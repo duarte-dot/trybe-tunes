@@ -8,6 +8,7 @@
 
 .page-loading p {
   text-align: center;
+  margin-top: 20px;
 }
 
 .loading {
@@ -18,6 +19,17 @@
   border-radius: 50%;
   animation: is-rotating 1s infinite;
   margin-bottom: 2%;
+}
+
+@media screen and (min-width: 992px) {
+  .page-loading p {
+    margin-left: 300px;
+  }
+
+  .loading {
+    margin-top: 100px;
+    margin-left: 300px;
+  }
 }
 
 @keyframes is-rotating {

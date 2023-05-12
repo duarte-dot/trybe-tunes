@@ -44,7 +44,7 @@ class Search extends Component {
         <div className="page-search">
           <Sidebar />
           <div className="main-content-search">
-            <h1 className="section-name">Search</h1>
+            <h1 className="search-section-name">Search</h1>
             <Loading />
           </div>
         </div>
@@ -54,7 +54,7 @@ class Search extends Component {
         <div className="page-search">
           <Sidebar />
           <div className="main-content-search">
-            <h1 className="section-name">Search</h1>
+            <h1 className="search-section-name">Search</h1>
 
             <div className="form-div">
               <form className="form-search">
@@ -104,7 +104,7 @@ class Search extends Component {
       <div className="page-search">
         <Sidebar />
         <div className="main-content-search">
-          <h1 className="section-name">Search</h1>
+          <h1 className="search-section-name">Search</h1>
           <div>
             <form className="form-search">
               <input
@@ -118,6 +118,7 @@ class Search extends Component {
               />
               <button
                 type="submit"
+                className="button-search"
                 disabled={ isLoginButtonDisabled }
                 onClick={ this.onSearchButtonClick }
               >

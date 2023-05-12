@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { UilPen } from '@iconscout/react-unicons';
 import Sidebar from '../components/Sidebar';
 import { getUser } from '../services/userAPI';
 import ProfileCard from '../components/ProfileCard';
@@ -33,26 +34,24 @@ class Profile extends Component {
       return (
         <div className="page-profile">
           <Sidebar />
-          <div data-testid="page-profile" className="main-content-profile">
+          <div className="main-content-profile">
             <Loading />
           </div>
         </div>
       );
     } return (
-      <div data-testid="page-profile" className="page-profile">
+      <div className="page-profile">
         <Sidebar />
+        <h1 className="profile-section-name">Profile</h1>
         <div className="main-content-profile">
-          <h1 className="section-name">Profile</h1>
-          <div className="infos-userdois">
-            { userInfoLogin.map((e, index) => (<ProfileCard
-              name={ e.name }
-              email={ e.email }
-              image={ e.image }
-              description={ e.description }
-              key={ index }
-            />))}
-            <Link className="link-edit-profile" to="/profile/edit">edit profile</Link>
-          </div>
+          { userInfoLogin.map((e, index) => (<ProfileCard
+            name={ e.name }
+            email={ e.email }
+            image={ e.image }
+            description={ e.description }
+            key={ index }
+          />))}
+          <Link className="link-edit-profile" to="/profile/edit"><UilPen /></Link>
         </div>
       </div>
     );

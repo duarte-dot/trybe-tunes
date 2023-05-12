@@ -3,6 +3,7 @@ import Sidebar from '../components/Sidebar';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from '../components/Loading';
 import FavoritesPlayer from '../components/FavoritesPlayer';
+import '../styles/favorites.css';
 
 class Favorites extends Component {
   constructor() {
@@ -41,13 +42,14 @@ class Favorites extends Component {
         <Sidebar />
 
         <div className="main-content-album">
-          <h1 className="section-name">Favorites</h1>
+          <h1 className="favorites-section-name">Favorites</h1>
           <div className="favorite-songs">
             {favoriteSongs.map((song, index) => (
               <FavoritesPlayer
                 trackName={ song.trackName }
                 previewUrl={ song.previewUrl }
                 trackId={ song.trackId }
+                artwork={ song.artworkUrl100 }
                 songObj={ song }
                 checked
                 key={ index }

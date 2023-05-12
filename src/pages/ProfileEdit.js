@@ -21,7 +21,6 @@ class ProfileEdit extends Component {
 
   getUserInfo = async () => {
     const userInfo = await getUser();
-    // console.log(userInfo);
     this.setState({
       userInfoLogin: [userInfo],
       isLoading: false,
@@ -35,9 +34,7 @@ class ProfileEdit extends Component {
     const min = 1;
     if (userInfoLogin[0].email.length >= min
         && (/^([\w+-]+\.)*[\w+-]+@([\w+-]+\.)*[\w+-]+\.[a-zA-Z]{2,4}$/.test(userInfoLogin[0].email))
-        && userInfoLogin[0].name.length >= min
-        && userInfoLogin[0].description.length >= min
-        && userInfoLogin[0].image.length >= min) {
+        && userInfoLogin[0].name.length >= min) {
       this.setState({
         isLoginButtonDisabled: false,
       });
@@ -52,7 +49,6 @@ class ProfileEdit extends Component {
     const { value, name } = target;
     const { userInfoLogin } = this.state;
     userInfoLogin[0][name] = value;
-    console.log(userInfoLogin);
     this.setState({
       userInfoLogin,
     }, this.checkValues());
@@ -64,17 +60,14 @@ class ProfileEdit extends Component {
       return (
         <div className="page-profile">
           <Sidebar />
-          <div data-testid="page-profile-edit" className="main-content-profile">
-            <h1>Profile edit</h1>
-            <Loading />
-          </div>
+          <Loading />
         </div>
       );
     } return (
-      <div data-testid="page-profile-edit" className="page-profile">
+      <div className="page-profile">
         <Sidebar />
         <div className="main-content-profile">
-          <h1 className="section-name">Profile edit</h1>
+          <h1 className="profile-section-name">Edit your profile!</h1>
           <form
             className="form-edit-profile"
             onSubmit={ async (e) => {
@@ -86,50 +79,47 @@ class ProfileEdit extends Component {
             } }
           >
             <label htmlFor="name">
-              <div>
+              <h2>
                 Name:
-              </div>
+              </h2>
               <input
                 className="input-text-edit-name"
                 type="text"
                 value={ userInfoLogin[0].name }
                 id="name"
                 name="name"
-                data-testid="edit-input-name"
                 onChange={ this.onInputChange }
               />
             </label>
             <label htmlFor="email">
-              <div>
+              <h2>
                 E-mail:
-              </div>
+              </h2>
               <input
                 className="input-text-edit-name"
                 type="text"
                 value={ userInfoLogin[0].email }
                 id="email"
                 name="email"
-                data-testid="edit-input-email"
                 onChange={ this.onInputChange }
               />
             </label>
             <label htmlFor="description">
-              <div>
+              <h2>
                 Description:
-              </div>
+              </h2>
               <textarea
                 maxLength="500"
                 id="description"
                 value={ userInfoLogin[0].description }
                 name="description"
-                data-testid="edit-input-description"
                 onChange={ this.onInputChange }
               />
             </label>
             <label htmlFor="image">
-              <div>
-                Image:
-              </div>
+              <h2>
+                Image (link):
+              </h2>
               <input
                 placeholder="your image link here"
                 className="input-text-edit-name"
@@ -137,14 +127,13 @@ class ProfileEdit extends Component {
                 value={ userInfoLogin[0].image }
                 id="image"
                 name="image"
-                data-testid="edit-input-image"
                 onChange={ this.onInputChange }
               />
             </label>
             <button
               name="buttonSubmit"
               type="submit"
-              data-testid="edit-button-save"
+              className="edit-button-save"
               disabled={ isLoginButtonDisabled }
             >
               edit profile
