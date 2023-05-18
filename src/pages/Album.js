@@ -52,17 +52,17 @@ class Album extends Component {
           <Sidebar />
           <div className="main-content-album">
             <div className="album-info">
-              <img width="100px" src={ requestR[0].artworkUrl60 } alt="" />
-              <h1
-                data-testid="artist-name"
-              >
+              <img
+                className="image_album"
+                width="100px"
+                src={ requestR[0].artworkUrl60 }
+                alt="album"
+              />
+              <h1 className="album_artist_names">
                 {requestR[0].artistName}
-              </h1>
-              <h3
-                data-testid="album-name"
-              >
+                <span className="span_album_artist">|</span>
                 {requestR[0].collectionName}
-              </h3>
+              </h1>
             </div>
             <div className="songs">
               {requestR.map((song, index) => {

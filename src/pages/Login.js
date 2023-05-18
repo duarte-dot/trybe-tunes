@@ -41,7 +41,11 @@ class Login extends Component {
     const loginButtonDisabled = name.length < MIN_NAME_LENGTH;
 
     if (userLoggingIn) {
-      return <Loading />;
+      return (
+        <div className="page-loading-login">
+          <Loading />
+        </div>
+      );
     }
 
     return (

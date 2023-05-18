@@ -34,7 +34,7 @@ class Profile extends Component {
       return (
         <div className="page-profile">
           <Sidebar />
-          <div className="main-content-profile">
+          <div className="page-loading-profile">
             <Loading />
           </div>
         </div>

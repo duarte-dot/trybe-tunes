@@ -30,9 +30,9 @@ class Favorites extends Component {
 
     if (isLoading) {
       return (
-        <div data-testid="page-album" className="page-album">
+        <div className="page-album">
           <Sidebar />
-          <div className="main-content-album">
+          <div className="page-loading-favorites">
             <Loading />
           </div>
         </div>

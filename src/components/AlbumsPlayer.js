@@ -40,11 +40,21 @@ class AlbumsPlayer extends Component {
     const { isFavorite, isLoading } = this.state;
 
     if (isLoading) {
-      return <p style={ { marginTop: '40px', marginBottom: '80px' } }>loading...</p>;
+      return (
+        <p
+          style={ {
+            marginTop: '40px',
+            marginBottom: '60px',
+            textAlign: 'center',
+          } }
+        >
+          loading...
+        </p>
+      );
     }
 
     return (
-      <div>
+      <div className="div_audio_and_name">
         <div className="song-name">
           <p>{trackName}</p>
         </div>

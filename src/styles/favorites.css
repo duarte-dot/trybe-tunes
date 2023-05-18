@@ -47,8 +47,11 @@ audio::-webkit-media-controls-mute-button {
 }
 
 .favorites-section-name {
-  font-weight: 3em;
-  margin-bottom: 30px;
+  margin-top: 0;
+  font-size: 2em;
+  padding-top: 8px;
+  margin-right: 200px;
+  margin-bottom: 50px;
 }
 
 .heart-checkbox {
@@ -88,4 +91,61 @@ audio::-webkit-media-controls-mute-button {
 input:checked[type="checkbox"]::before,
 input:checked[type="checkbox"]::after {
   background-color: #fe0f42;
+}
+
+.album-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.span_album_artist {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.album_artist_names {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.image_album {
+  margin-top: 15px;
+}
+
+.div_audio_and_name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.song-name {
+  margin-bottom: 5px;
+}
+
+@media screen and (min-width: 992px) {
+  .main-content-album {
+    margin-left: 360px;
+  }
+
+  .span_album_artist {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .image-audio-and-checkbox {
+    width: 640px;
+  }
+
+  .audio-song {
+    width: 440px;
+  }
+
+  .favorites-section-name {
+    margin-top: 0;
+    font-size: 2em;
+    padding-top: 8px;
+    margin-right: 1460px;
+  }
 }
