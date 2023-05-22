@@ -14,10 +14,6 @@
   margin-top: 38vh;
 }
 
-.page-loading-login {
-  margin-left: -150px;
-}
-
 
 @media screen and (min-width: 992px) {
   .loading {
@@ -31,6 +27,10 @@
     animation: is-rotating 1s infinite;
     border-radius: 50%;
     margin-bottom: 2%;
+  }
+
+  .page-loading-login {
+    margin-left: -150px;
   }
 
   .page-search-loading .loading {
