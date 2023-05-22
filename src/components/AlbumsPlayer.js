@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import '../styles/albumplayer.css';
 
-class MusicCardWithGetSongs extends Component {
-  state = {
-    isLoading: false,
-    isFavorite: true,
-  };
+class AlbumsPlayer extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      isLoading: false,
+      isFavorite: false,
+    };
+  }
 
   componentDidMount() {
     const { checked } = this.props;
@@ -17,61 +22,72 @@ class MusicCardWithGetSongs extends Component {
 
   favSongCheck = async () => {
     const { isFavorite } = this.state;
-    const { songObj, getSongs } = this.props;
+    const { songObj } = this.props;
+
+    this.setState({ isLoading: true });
+
     if (isFavorite) {
-      this.setState({ isFavorite: false, isLoading: true });
       await removeSong(songObj);
-      this.setState({ isLoading: false, isFavorite: true });
-      await getSongs();
+      this.setState({ isFavorite: false, isLoading: false });
     } else {
-      this.setState({ isFavorite: true, isLoading: true });
       await addSong(songObj);
-      this.setState({ isLoading: false });
-      await getSongs();
+      this.setState({ isFavorite: true, isLoading: false });
     }
-    // await getSongs();
   };
 
   render() {
-    const { trackId, trackName, previewUrl } = this.props;
+    const { trackName, previewUrl, artwork } = this.props;
     const { isFavorite, isLoading } = this.state;
+
     if (isLoading) {
-      return <p style={ { marginTop: '40px', marginBottom: '80px' } }>loading...</p>;
+      return (
+        <p
+          style={ {
+            marginTop: '40px',
+            marginBottom: '60px',
+            textAlign: 'center',
+          } }
+        >
+          loading...
+        </p>
+      );
     }
+
     return (
-      <div>
+      <div className="div_audio_and_name">
         <div className="song-name">
           <p>{trackName}</p>
         </div>
-        <div className="song" />
-        <div className="audio-and-checkbox">
-          <audio data-testid="audio-component" src={ previewUrl } controls>
+
+        <div className="image-audio-and-checkbox">
+          <img className="img-song" width="50px" src={ artwork } alt="song" />
+
+          <audio className="audio-song" src={ previewUrl } controls>
             <track kind="captions" />
             O seu navegador não suporta o elemento
             {' '}
             <code>audio</code>
           </audio>
+
           <input
-            data-testid={ `checkbox-music-${trackId}` }
+            className="heart-checkbox-no-favorite"
             type="checkbox"
-            name="checkb"
-            id="checkb"
             checked={ isFavorite }
             onChange={ this.favSongCheck }
           />
         </div>
       </div>
+
     );
   }
 }
 
-MusicCardWithGetSongs.propTypes = {
+AlbumsPlayer.propTypes = {
   trackName: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
-  trackId: PropTypes.number.isRequired,
   songObj: PropTypes.shape({}).isRequired,
   checked: PropTypes.bool.isRequired,
-  getSongs: PropTypes.func.isRequired,
+  artwork: PropTypes.string.isRequired,
 };
 
-export default MusicCardWithGetSongs;
+export default AlbumsPlayer;

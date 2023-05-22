@@ -1,0 +1,150 @@
+Box sizing rules
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding and margin */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+/* Set default font family and size */
+body {
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+}
+
+/* Remove list styles */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Remove anchor text decoration */
+a {
+  text-decoration: none;
+  color: rgb(10, 10, 10);
+}
+
+/* Remove form input borders */
+input,
+select {
+  border: none;
+  outline: none;
+}
+
+/* Set default button styles */
+button {
+  background-color: #ccc;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+button:enabled {
+  cursor: pointer;
+}
+
+/* Largura e cor da scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f1f1f1;
+}
+
+/* Cor da thumb (alça) da scrollbar */
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+/* Efeito de hover na thumb */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Estilo da thumb quando estiver pressionada */
+::-webkit-scrollbar-thumb:active {
+  background-color: #333;
+}
+
+/* Estilo do track (fundo da scrollbar) */
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Efeito de hover no track */
+::-webkit-scrollbar-track:hover {
+  background-color: #eaeaea;
+}

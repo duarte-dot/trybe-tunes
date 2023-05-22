@@ -1,0 +1,175 @@
+.login-page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-box {
+  display: flex;
+  margin-top: 30px;
+}
+
+.button-login:enabled {
+  background-color: hsla(45, 64%, 64%, 1);
+  color: white;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-title {
+  font-size: 26px;
+  font-weight: normal;
+  margin-bottom: 20px;
+}
+
+.logo-title span:first-of-type {
+  font-weight: 400;
+}
+
+.logo-title span:last-of-type {
+  font-weight: bold;
+}
+
+.logo-image {
+  width: 120px;
+  margin-bottom: 30px;
+}
+
+.login-title {
+  font-size: 1em;
+  margin-bottom: 2%;
+}
+
+.login-name-input {
+  font-size: 20px;
+  padding: 10px;
+  width: 250px;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 2%;
+}
+
+@media screen and (min-width: 576px) and (max-width: 1200px) {
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-title {
+    font-size: 26px;
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+  
+  .logo-title span:first-of-type {
+    font-weight: 400;
+  }
+  
+  .logo-title span:last-of-type {
+    font-weight: bold;
+  }
+
+  .logo-image {
+    width: 180px;
+    margin-bottom: 30px;
+  }
+
+  .login-title {
+    font-size: 1.4em;
+  }
+
+  .login-name-input {
+    font-size: 20px;
+    padding: 10px;
+    width: 250px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 2%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  h1.login-title {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+
+  .login-page {
+    flex-direction: row;
+  }
+
+  .login-box {
+    background-color: rgb(235, 235, 235);
+    padding: 100px;
+    border-radius: 2%;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-title {
+    margin-right: 300px;
+    font-size: 36px;
+    font-weight: normal;
+  }
+  
+  .logo-title span:first-of-type {
+    font-weight: 400;
+  }
+  
+  .logo-title span:last-of-type {
+    font-weight: bold;
+  }
+
+  .logo-image {
+    margin-right: 300px;
+    width: 280px;
+  }
+
+  .login-title {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+  }
+
+  .login-name-input {
+    font-size: 20px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 2%;
+  }
+
+  .button-login {
+    align-self: self-end;
+  }
+}

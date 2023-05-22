@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Header from '../components/Header';
+import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
-import MusicCard from '../components/MusicCard';
+import AlbumsPlayer from '../components/AlbumsPlayer';
 import getMusics from '../services/musicsAPI';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
-import './album.css';
 
 class Album extends Component {
-  state = {
-    requestR: [],
-    isLoading: false,
-    favoriteSongs: [],
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      requestR: [],
+      isLoading: false,
+      favoriteSongs: [],
+    };
+  }
 
   componentDidMount() {
     this.getMusics();
@@ -20,12 +23,12 @@ class Album extends Component {
 
   getMusics = async () => {
     this.setState({ isLoading: true });
+
     const { match: { params } } = this.props;
     const request = await getMusics(params.id);
     const requestFav = await getFavoriteSongs();
-    this.setState({ requestR: request,
-      isLoading: false,
-      favoriteSongs: requestFav });
+
+    this.setState({ requestR: request, isLoading: false, favoriteSongs: requestFav });
   };
 
   render() {
@@ -34,7 +37,7 @@ class Album extends Component {
     if (isLoading) {
       return (
         <div data-testid="page-album" className="page-album">
-          <Header />
+          <Sidebar />
           <div className="main-content-album">
             <Loading />
           </div>
@@ -46,20 +49,20 @@ class Album extends Component {
       const { favoriteSongs } = this.state;
       return (
         <section data-testid="page-album" className="page-album">
-          <Header />
+          <Sidebar />
           <div className="main-content-album">
             <div className="album-info">
-              <img width="100px" src={ requestR[0].artworkUrl60 } alt="" />
-              <h1
-                data-testid="artist-name"
-              >
+              <img
+                className="image_album"
+                width="100px"
+                src={ requestR[0].artworkUrl60 }
+                alt="album"
+              />
+              <h1 className="album_artist_names">
                 {requestR[0].artistName}
-              </h1>
-              <h3
-                data-testid="album-name"
-              >
+                <span className="span_album_artist">|</span>
                 {requestR[0].collectionName}
-              </h3>
+              </h1>
             </div>
             <div className="songs">
               {requestR.map((song, index) => {
@@ -68,21 +71,22 @@ class Album extends Component {
                 }
                 for (let i = 0; i < favoriteSongs.length; i += 1) {
                   if (favoriteSongs[i].trackId === song.trackId) {
-                    return (<MusicCard
+                    return (<AlbumsPlayer
                       trackName={ song.trackName }
                       previewUrl={ song.previewUrl }
                       trackId={ song.trackId }
+                      artwork={ song.artworkUrl100 }
                       songObj={ song }
                       checked
                       key={ index }
                     />);
                   }
                 }
-                return (<MusicCard
+                return (<AlbumsPlayer
                   songObj={ song }
+                  artwork={ song.artworkUrl100 }
                   trackName={ song.trackName }
                   previewUrl={ song.previewUrl }
-                  trackId={ song.trackId }
                   key={ index }
                   checked={ false }
                 />);

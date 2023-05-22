@@ -1,77 +1,77 @@
 import React, { Component } from 'react';
-// import { Redirect } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { createUser } from '../services/userAPI';
-import './login.css';
 import Loading from '../components/Loading';
+import '../styles/loginPage.css';
+
+const MIN_NAME_LENGTH = 3;
 
 class Login extends Component {
   constructor() {
     super();
-    this.onInputChange = this.onInputChange.bind(this);
+
+    this.state = {
+      name: '',
+      userLoggingIn: false,
+    };
+
+    this.onNameInputChange = this.onNameInputChange.bind(this);
   }
 
-  state = {
-    name: '',
-    isLoginButtonDisabled: true,
-    isLoggedIn: false,
-  };
-
-  createUserRedirect = (event) => {
+  createUserAndRedirect = async (event) => {
     event.preventDefault();
+
     const { history } = this.props;
     const { name } = this.state;
 
-    this.setState({
-      isLoggedIn: true,
-    }, async () => {
-      await createUser({ name });
-      history.push('/search');
-    });
+    this.setState({ userLoggingIn: true });
+
+    await createUser({ name });
+
+    history.push('/search');
   };
 
-  onInputChange = ({ target }) => {
-    const { value } = target;
-    this.setState({
-      name: value,
-    }, () => {
-      const min = 3;
-      if (value.length >= min) {
-        this.setState({
-          isLoginButtonDisabled: false,
-        });
-      } else {
-        this.setState({
-          isLoginButtonDisabled: true,
-        });
-      }
-    });
+  onNameInputChange = (event) => {
+    const name = event.target.value;
+    this.setState({ name });
   };
 
   render() {
-    const { isLoginButtonDisabled, isLoggedIn } = this.state;
-    if (isLoggedIn) {
-      return <Loading />;
+    const { name, userLoggingIn } = this.state;
+    const loginButtonDisabled = name.length < MIN_NAME_LENGTH;
+
+    if (userLoggingIn) {
+      return (
+        <div className="page-loading-login">
+          <Loading />
+        </div>
+      );
     }
+
     return (
-      <div data-testid="page-login" className="page-login">
-        <div className="box-login">
-          <form className="form-login" onSubmit={ this.createUserRedirect }>
-            <h2 className="login-title">Login</h2>
+      <div className="login-page">
+        <div className="logo">
+          <h1 className="logo-title">
+            <span>Trybe</span>
+            <span>Tunes</span>
+          </h1>
+          <img className="logo-image" src="https://github.com/duarte-dot/image-uploads/assets/78454964/061b23d4-f57e-4164-96fc-8560cd7a84a6" alt="logo" />
+        </div>
+        <div className="login-box">
+          <form className="login-form" onSubmit={ this.createUserAndRedirect }>
+            <h1 className="login-title">Login</h1>
+
             <input
-              placeholder="what's your name?"
-              className="input-name-login"
               type="text"
-              id="login"
-              name="login"
-              data-testid="login-name-input"
-              onChange={ this.onInputChange }
+              className="login-name-input"
+              placeholder="what's your name?"
+              onChange={ this.onNameInputChange }
             />
+
             <button
-              className="button-login"
               type="submit"
-              data-testid="login-submit-button"
-              disabled={ isLoginButtonDisabled }
+              className="button-login"
+              disabled={ loginButtonDisabled }
             >
               Login
             </button>

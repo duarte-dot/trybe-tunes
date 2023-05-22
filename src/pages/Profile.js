@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
+import { UilPen } from '@iconscout/react-unicons';
+import Sidebar from '../components/Sidebar';
 import { getUser } from '../services/userAPI';
-import CardProfile from '../components/CardProfile';
+import ProfileCard from '../components/ProfileCard';
 import Loading from '../components/Loading';
-import './profile.css';
 
 class Profile extends Component {
-  state = {
-    userInfoLogin: [],
-    isLoading: true,
-  };
+  constructor() {
+    super();
+
+    this.state = {
+      userInfoLogin: [],
+      isLoading: true,
+    };
+  }
 
   componentDidMount() {
     this.getUserInfo();
@@ -29,27 +33,25 @@ class Profile extends Component {
     if (isLoading) {
       return (
         <div className="page-profile">
-          <Header />
-          <div data-testid="page-profile" className="main-content-profile">
+          <Sidebar />
+          <div className="page-loading-profile">
             <Loading />
           </div>
         </div>
       );
     } return (
-      <div data-testid="page-profile" className="page-profile">
-        <Header />
+      <div className="page-profile">
+        <Sidebar />
+        <h1 className="profile-section-name">Profile</h1>
         <div className="main-content-profile">
-          <h2 className="section-name">Profile</h2>
-          <div className="infos-userdois">
-            { userInfoLogin.map((e, index) => (<CardProfile
-              name={ e.name }
-              email={ e.email }
-              image={ e.image }
-              description={ e.description }
-              key={ index }
-            />))}
-            <Link className="link-edit-profile" to="/profile/edit">edit profile</Link>
-          </div>
+          { userInfoLogin.map((e, index) => (<ProfileCard
+            name={ e.name }
+            email={ e.email }
+            image={ e.image }
+            description={ e.description }
+            key={ index }
+          />))}
+          <Link className="link-edit-profile" to="/profile/edit"><UilPen /></Link>
         </div>
       </div>
     );

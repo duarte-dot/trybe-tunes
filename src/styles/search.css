@@ -1,0 +1,77 @@
+.search-section-name {
+  font-size: 2em;
+  margin-top: 8px;
+  margin-left: 20px;
+}
+
+.input-artist {
+  margin-left: 20px;
+  height: 35px;
+  margin-right: 5px;
+}
+
+.input-artist-after {
+  margin-left: 20px;
+  height: 35px;
+  margin-right: 5px;
+  border-radius: 5%;
+}
+
+.button-search:enabled {
+  background-color: hsla(45, 64%, 64%, 1);
+  color: white;
+}
+
+.results-text-div {
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.albums {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  justify-items: center;
+  scroll-behavior: smooth;
+}
+
+.no-album {
+  margin-left: 15%;
+  width: 200px;
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  /* body {
+    background-color: red;
+  } */
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  /* body {
+    background-color: blue;
+  } */
+}
+
+@media screen and (min-width: 992px) {
+  .page-search {
+    display: flex;
+    background-color: #eff2f9;
+  }
+
+  .main-content-search {
+    height: 100vh;
+    display: flex;
+    width: 100vw;
+    overflow: auto;
+    margin-left: 300px;
+    flex-direction: column;
+  }
+
+  .albums {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 0fr));
+  }
+}
+
+
+@media screen and (min-width: 1200px) {
+}

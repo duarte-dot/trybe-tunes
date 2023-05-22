@@ -1,123 +1,93 @@
 import React, { Component } from 'react';
-import CardAlbum from '../components/CardAlbum';
-import Header from '../components/Header';
+import AlbumCard from '../components/AlbumCard';
+import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
-import './search.css';
+import '../styles/search.css';
 
 class Search extends Component {
   constructor() {
     super();
 
     this.state = {
-      Artist: '',
-      isLoginButtonDisabled: true,
+      artist: '',
       isLoading: false,
-      artistName: '',
-      requestSucc: false,
-      requestR: {},
+      request: {},
+      requestDone: false,
+      artistSearched: '',
     };
-
-    this.onButtonClick = this.onButtonClick.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     isLoading: false,
-  //   });
-  // }
-
-  onInputChange = ({ target }) => {
-    const { value } = target;
-    this.setState({
-      Artist: value,
-    }, () => {
-      this.buttonDisabled();
-    });
+  onArtistInputChange = (event) => {
+    this.setState({ artist: event.target.value });
   };
 
-  onButtonClick = async () => {
-    this.setState({ isLoading: true });
-    const { Artist } = this.state;
-    const request = await searchAlbumsAPI(Artist);
+  onSearchButtonClick = async () => {
+    const { artist } = this.state;
+    this.setState({ isLoading: true, artistSearched: artist, artist: '' });
+
+    const request = await searchAlbumsAPI(artist);
+
     this.setState({
       isLoading: false,
-      artistName: Artist,
-      Artist: '',
-      requestSucc: true,
-      requestR: request,
+      request,
+      requestDone: true,
     });
   };
-
-  buttonDisabled() {
-    const { Artist } = this.state;
-    const artistValidation = Artist.length >= 2;
-
-    if (artistValidation) {
-      this.setState({
-        isLoginButtonDisabled: false,
-      });
-    } else {
-      this.setState({
-        isLoginButtonDisabled: true,
-      });
-    }
-  }
 
   render() {
-    const { isLoginButtonDisabled, isLoading, Artist, artistName, requestSucc,
-      requestR } = this.state;
+    const { isLoading, request, requestDone, artist, artistSearched } = this.state;
+    const isLoginButtonDisabled = artist.length < 2;
 
     if (isLoading) {
       return (
-        <div data-testid="page-search" className="page-search">
-          <Header />
-          <div className="main-content-search">
-            <h2 className="section-name">Search</h2>
+        <div className="page-search">
+          <Sidebar />
+          <div className="page-search-loading">
+            <h1 className="search-section-name">Search</h1>
             <Loading />
           </div>
         </div>
       );
-    } if (requestSucc) {
+    } if (requestDone) {
       return (
-        <div data-testid="page-search" className="page-search">
-          <Header />
+        <div className="page-search">
+          <Sidebar />
           <div className="main-content-search">
-            <h2 className="section-name">Search</h2>
+            <h1 className="search-section-name">Search</h1>
+
             <div className="form-div">
               <form className="form-search">
                 <input
                   className="input-artist-after"
                   placeholder="insert artist/band"
                   type="text"
-                  id="artist"
-                  name="artist"
-                  value={ Artist }
-                  data-testid="search-artist-input"
-                  onChange={ this.onInputChange }
+                  value={ artist }
+                  onChange={ this.onArtistInputChange }
                 />
                 <button
                   className="button-search"
                   type="submit"
                   disabled={ isLoginButtonDisabled }
-                  data-testid="search-artist-button"
-                  onClick={ this.onButtonClick }
+                  onClick={ this.onSearchButtonClick }
                 >
                   Search
                 </button>
               </form>
             </div>
+
             <div className="results-text-div">
               <h3 className="results-text">
-                {artistName}
+                {artistSearched}
                 {' '}
                 album results
               </h3>
             </div>
+
             <div className="albums">
-              {requestR.length === 0 ? <h1>no album was found</h1>
-                : requestR.map((album, index) => (
-                  <CardAlbum
+              {request.length === 0 ? <h1 className="no-album">no album was found</h1>
+                : request.map((album, index) => (
+                  <AlbumCard
                     imgUrl={ album.artworkUrl100 }
                     artistName={ album.artistName }
                     collectionName={ album.collectionName }
@@ -126,15 +96,16 @@ class Search extends Component {
                   />
                 ))}
             </div>
+
           </div>
         </div>
       );
     } return (
-      <div data-testid="page-search" className="page-search">
-        <Header />
+      <div className="page-search">
+        <Sidebar />
         <div className="main-content-search">
-          <h2 className="section-name">Search</h2>
-          <div className="testee">
+          <h1 className="search-section-name">Search</h1>
+          <div>
             <form className="form-search">
               <input
                 className="input-artist"
@@ -142,15 +113,14 @@ class Search extends Component {
                 type="text"
                 id="artist"
                 name="artist"
-                value={ Artist }
-                data-testid="search-artist-input"
-                onChange={ this.onInputChange }
+                value={ artist }
+                onChange={ this.onArtistInputChange }
               />
               <button
                 type="submit"
+                className="button-search"
                 disabled={ isLoginButtonDisabled }
-                data-testid="search-artist-button"
-                onClick={ this.onButtonClick }
+                onClick={ this.onSearchButtonClick }
               >
                 Search
               </button>
