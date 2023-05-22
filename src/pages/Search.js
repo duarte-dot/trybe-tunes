@@ -43,7 +43,7 @@ class Search extends Component {
       return (
         <div className="page-search">
           <Sidebar />
-          <div className="main-content-search">
+          <div className="page-search-loading">
             <h1 className="search-section-name">Search</h1>
             <Loading />
           </div>
@@ -85,7 +85,7 @@ class Search extends Component {
             </div>
 
             <div className="albums">
-              {request.length === 0 ? <h1>no album was found</h1>
+              {request.length === 0 ? <h1 className="no-album">no album was found</h1>
                 : request.map((album, index) => (
                   <AlbumCard
                     imgUrl={ album.artworkUrl100 }

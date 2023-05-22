@@ -6,7 +6,6 @@ class Loading extends Component {
     return (
       <div className="page-loading">
         <div className="loading" />
-        <p>loading...</p>
       </div>
     );
   }

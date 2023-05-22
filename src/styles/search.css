@@ -35,6 +35,11 @@
   scroll-behavior: smooth;
 }
 
+.no-album {
+  margin-left: 15%;
+  width: 200px;
+}
+
 @media screen and (min-width: 576px) and (max-width: 768px) {
   /* body {
     background-color: red;
