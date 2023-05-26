@@ -14,8 +14,12 @@
   margin-top: 38vh;
 }
 
-.page-loading-login {
-  margin-left: -150px;
+.page-search-loading .loading {
+  margin-top: 38vh;
+}
+
+.main-content-album-loading .loading {
+  margin-top: 38vh;
 }
 
 
@@ -31,6 +35,14 @@
     animation: is-rotating 1s infinite;
     border-radius: 50%;
     margin-bottom: 2%;
+  }
+
+  .main-content-album-loading .loading {
+    margin-top: 44vh;
+  }
+
+  .page-loading-login {
+    margin-left: -150px;
   }
 
   .page-search-loading .loading {
