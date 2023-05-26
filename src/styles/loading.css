@@ -14,6 +14,14 @@
   margin-top: 38vh;
 }
 
+.page-search-loading .loading {
+  margin-top: 38vh;
+}
+
+.main-content-album-loading .loading {
+  margin-top: 38vh;
+}
+
 
 @media screen and (min-width: 992px) {
   .loading {
@@ -27,6 +35,10 @@
     animation: is-rotating 1s infinite;
     border-radius: 50%;
     margin-bottom: 2%;
+  }
+
+  .main-content-album-loading .loading {
+    margin-top: 44vh;
   }
 
   .page-loading-login {

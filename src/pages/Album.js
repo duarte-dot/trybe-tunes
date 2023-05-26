@@ -36,9 +36,9 @@ class Album extends Component {
 
     if (isLoading) {
       return (
-        <div data-testid="page-album" className="page-album">
+        <div className="page-album">
           <Sidebar />
-          <div className="main-content-album">
+          <div className="main-content-album-loading">
             <Loading />
           </div>
         </div>
