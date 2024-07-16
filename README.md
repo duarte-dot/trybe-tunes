@@ -1,4 +1,4 @@
-# [TrybeTunes](http://duarte-dot-trybetunes.surge.sh)
+# [TrybeTunes](https://duarte-dot-trybetunes.surge.sh)
 
 This project is a web application that allows users to search for artists or bands and view their albums and songs. Users can preview songs from albums, favorite and unfavorite songs, and view their list of favorite songs. Additionally, users can view and edit their profiles.
 
