@@ -44,3 +44,4 @@ You can also access it via the [deployment link](http://duarte-dot-trybetunes.su
 ## Conclusion
 
 This project provided an opportunity to apply the knowledge gained during the Trybe course on React and consuming API data. With the developed features, users can easily and intuitively search and explore songs from their favorite artists. Furthermore, the implementation of the favorites system and profile editing allows users to personalize their experience within the application.
+
