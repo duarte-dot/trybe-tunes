@@ -2,9 +2,6 @@
   "name": "trybetunes",
   "version": "1.0.1",
   "private": true,
-  "engines": {
-    "node": "16 || 18"
-  },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.0",
     "@iconscout/react-unicons": "^1.1.6",
