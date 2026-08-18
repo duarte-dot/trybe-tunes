@@ -1,0 +1,34 @@
+.album-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0.6rem;
+}
+
+.skeleton {
+  animation: pulse 1.4s ease-in-out infinite;
+  background-color: var(--surface);
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.skeleton--art {
+  aspect-ratio: 1;
+  width: 100%;
+}
+
+.skeleton--line {
+  height: 0.8rem;
+  width: 80%;
+}
+
+.skeleton--short {
+  width: 45%;
+}
+
+@keyframes pulse {
+
+  50% {
+    opacity: 0.4;
+  }
+}

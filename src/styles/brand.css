@@ -1,0 +1,24 @@
+.brand {
+  align-items: center;
+  display: flex;
+  gap: 0.65rem;
+  padding: 0.5rem 0.6rem;
+}
+
+.brand__mark {
+  background-image: linear-gradient(140deg, var(--accent), #b9853f);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  flex-shrink: 0;
+  height: 26px;
+  width: 26px;
+}
+
+.brand__text {
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.brand__text-strong {
+  font-weight: 700;
+}

@@ -1,0 +1,60 @@
+.track-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.track {
+  align-items: center;
+  border-radius: var(--radius);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.6rem 0.7rem;
+  transition: background-color var(--transition);
+}
+
+.track:hover {
+  background-color: var(--surface);
+}
+
+.track__index {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  width: 1.4rem;
+}
+
+.track__art {
+  border-radius: 10px;
+  flex-shrink: 0;
+  height: 46px;
+  object-fit: cover;
+  width: 46px;
+}
+
+.track__meta {
+  flex: 1 1 40%;
+  min-width: 0;
+}
+
+.track__name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track__sub {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track__dot {
+  margin-inline: 0.4rem;
+}

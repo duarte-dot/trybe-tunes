@@ -1,59 +1,54 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { UilPen } from '@iconscout/react-unicons';
-import Sidebar from '../components/Sidebar';
-import { getUser } from '../services/userAPI';
-import ProfileCard from '../components/ProfileCard';
+import Layout from '../components/Layout';
 import Loading from '../components/Loading';
+import ProfileCard from '../components/ProfileCard';
+import { getUser } from '../services/userAPI';
+import '../styles/profile.css';
+
+const ICON_SIZE = 18;
+const PAGE_TITLE = 'Profile';
 
 class Profile extends Component {
   constructor() {
     super();
 
-    this.state = {
-      userInfoLogin: [],
-      isLoading: true,
-    };
+    this.state = { isLoading: true, user: {} };
   }
 
   componentDidMount() {
-    this.getUserInfo();
+    this.loadUser();
   }
 
-  getUserInfo = async () => {
-    const userInfo = await getUser();
-    this.setState({
-      userInfoLogin: [userInfo],
-      isLoading: false,
-    });
+  loadUser = async () => {
+    const user = await getUser();
+    this.setState({ isLoading: false, user });
   };
 
   render() {
-    const { userInfoLogin, isLoading } = this.state;
+    const { isLoading, user } = this.state;
+
     if (isLoading) {
-      return (
-        <div className="page-profile">
-          <Sidebar />
-          <div className="page-loading-profile">
-            <Loading />
-          </div>
-        </div>
-      );
-    } return (
-      <div className="page-profile">
-        <Sidebar />
-        <h1 className="profile-section-name">Profile</h1>
-        <div className="main-content-profile">
-          { userInfoLogin.map((e, index) => (<ProfileCard
-            name={ e.name }
-            email={ e.email }
-            image={ e.image }
-            description={ e.description }
-            key={ index }
-          />))}
-          <Link className="link-edit-profile" to="/profile/edit"><UilPen /></Link>
-        </div>
-      </div>
+      return <Layout title={ PAGE_TITLE }><Loading /></Layout>;
+    }
+
+    const editLink = (
+      <Link to="/profile/edit" className="btn btn--ghost">
+        <UilPen size={ ICON_SIZE } />
+        Edit profile
+      </Link>
+    );
+
+    return (
+      <Layout title={ PAGE_TITLE } subtitle="Your public info" actions={ editLink }>
+        <ProfileCard
+          name={ user.name }
+          email={ user.email }
+          image={ user.image }
+          description={ user.description }
+        />
+      </Layout>
     );
   }
 }

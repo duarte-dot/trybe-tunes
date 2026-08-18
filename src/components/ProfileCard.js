@@ -1,28 +1,45 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FALLBACK_AVATAR } from './UserBadge';
 import '../styles/profile.css';
 
-class CardProfile extends Component {
+class ProfileCard extends Component {
   render() {
-    const { name, email, image, description } = this.props;
+    const { description, email, image, name } = this.props;
+
     return (
-      <div className="infos-user">
-        <h1 className="name-user">{name || 'seu nome'}</h1>
-        <p className="email-user">{ email || 'email@email.com'}</p>
-        <img className="profile-image" width="200" alt="profile" src={ image || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' } />
-        <div className="description-box">
-          <p className="description-user">{description || <p>descrição</p>}</p>
-        </div>
-      </div>
+      <article className="profile-card">
+        <div className="profile-card__cover" aria-hidden="true" />
+
+        <img
+          className="profile-card__avatar"
+          src={ image || FALLBACK_AVATAR }
+          alt={ `${name || 'user'} avatar` }
+        />
+
+        <h2 className="profile-card__name">{name || 'your name'}</h2>
+        <p className="profile-card__email">{email || 'add your e-mail'}</p>
+
+        <p className="profile-card__bio">
+          {description || 'tell the world what kind of music you love.'}
+        </p>
+      </article>
     );
   }
 }
 
-CardProfile.propTypes = {
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+ProfileCard.propTypes = {
+  description: PropTypes.string,
+  email: PropTypes.string,
+  image: PropTypes.string,
+  name: PropTypes.string,
 };
 
-export default CardProfile;
+ProfileCard.defaultProps = {
+  description: '',
+  email: '',
+  image: '',
+  name: '',
+};
+
+export default ProfileCard;

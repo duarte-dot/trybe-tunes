@@ -1,0 +1,55 @@
+.album-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.album-head {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.album-head__art {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  width: min(65%, 13rem);
+}
+
+.album-head__kind {
+  color: var(--text-dim);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.album-head__title {
+  font-size: clamp(1.45rem, 1rem + 2vw, 2.3rem);
+  letter-spacing: -0.02em;
+}
+
+.album-head__artist {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.album-head__meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+@media screen and ( min-width : 768px ) {
+
+  .album-head {
+    align-items: flex-end;
+    flex-direction: row;
+    gap: 1.75rem;
+    text-align: left;
+  }
+
+  .album-head__art {
+    width: 13rem;
+  }
+}

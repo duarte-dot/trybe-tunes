@@ -1,0 +1,31 @@
+.empty-state {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-inline: auto;
+  max-width: 26rem;
+  padding: 3.5rem 1rem;
+  text-align: center;
+}
+
+.empty-state__icon {
+  align-items: center;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--accent);
+  display: flex;
+  height: 64px;
+  justify-content: center;
+  width: 64px;
+}
+
+.empty-state__title {
+  font-size: 1.15rem;
+}
+
+.empty-state__text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}

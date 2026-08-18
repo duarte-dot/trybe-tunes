@@ -1,0 +1,41 @@
+.fav-btn {
+  align-items: center;
+  border-radius: 50%;
+  color: var(--text-dim);
+  display: flex;
+  flex-shrink: 0;
+  height: 38px;
+  justify-content: center;
+  margin-left: auto;
+  transition: background-color var(--transition) , color var(--transition);
+  width: 38px;
+}
+
+.fav-btn:hover {
+  background-color: var(--surface-hover);
+  color: var(--danger);
+}
+
+.fav-btn:disabled {
+  cursor: progress;
+  opacity: 0.5;
+}
+
+.fav-btn.is-active {
+  color: var(--danger);
+}
+
+.fav-btn.is-active svg {
+  animation: pop 260ms ease;
+}
+
+.fav-btn.is-active:hover {
+  background-color: var(--danger-soft);
+}
+
+@keyframes pop {
+
+  50% {
+    transform: scale(1.25);
+  }
+}

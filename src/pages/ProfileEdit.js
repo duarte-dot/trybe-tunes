@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Sidebar from '../components/Sidebar';
+import { Link } from 'react-router-dom';
+import Layout from '../components/Layout';
 import Loading from '../components/Loading';
+import { FALLBACK_AVATAR } from '../components/UserBadge';
 import { getUser, updateUser } from '../services/userAPI';
+import '../styles/profileEdit.css';
+
+const EMAIL_REGEX = /^[\w+-]+(\.[\w+-]+)*@[\w-]+(\.[\w-]+)*\.[a-z]{2,}$/i;
+const DESCRIPTION_MAX = 500;
+const PAGE_TITLE = 'Edit profile';
+const EMPTY_USER = { description: '', email: '', image: '', name: '' };
 
 class ProfileEdit extends Component {
   constructor() {
     super();
 
     this.state = {
-      userInfoLogin: [],
       isLoading: true,
-      isLoginButtonDisabled: true,
+      isSaving: false,
+      touched: {},
+      user: EMPTY_USER,
     };
   }
 
@@ -19,128 +28,142 @@ class ProfileEdit extends Component {
     this.getUserInfo();
   }
 
+  onChange = ({ target: { name, value } }) => this.setState((prev) => ({
+    user: { ...prev.user, [name]: value },
+  }));
+
+  onBlur = ({ target: { name } }) => this.setState((prev) => ({
+    touched: { ...prev.touched, [name]: true },
+  }));
+
+  onSubmit = async (event) => {
+    event.preventDefault();
+
+    const { history } = this.props;
+    const { user } = this.state;
+
+    this.setState({ isSaving: true });
+    await updateUser(user);
+
+    history.push('/profile');
+  };
+
+  getErrors() {
+    const { user } = this.state;
+
+    return {
+      email: EMAIL_REGEX.test(user.email.trim()) ? '' : 'Enter a valid e-mail.',
+      name: user.name.trim() ? '' : 'Your name cannot be empty.',
+    };
+  }
+
   getUserInfo = async () => {
-    const userInfo = await getUser();
-    this.setState({
-      userInfoLogin: [userInfo],
-      isLoading: false,
-    }, () => {
-      this.checkValues();
-    });
+    const user = await getUser();
+
+    this.setState({ isLoading: false, user: { ...EMPTY_USER, ...user } });
   };
 
-  checkValues = () => {
-    const { userInfoLogin } = this.state;
-    const min = 1;
-    if (userInfoLogin[0].email.length >= min
-        && (/^([\w+-]+\.)*[\w+-]+@([\w+-]+\.)*[\w+-]+\.[a-zA-Z]{2,4}$/.test(userInfoLogin[0].email))
-        && userInfoLogin[0].name.length >= min) {
-      this.setState({
-        isLoginButtonDisabled: false,
-      });
-    } else {
-      this.setState({
-        isLoginButtonDisabled: true,
-      });
-    }
-  };
+  renderPreview() {
+    const { user } = this.state;
 
-  onInputChange = ({ target }) => {
-    const { value, name } = target;
-    const { userInfoLogin } = this.state;
-    userInfoLogin[0][name] = value;
-    this.setState({
-      userInfoLogin,
-    }, this.checkValues());
-  };
+    return (
+      <aside className="edit-preview card">
+        <img
+          className="edit-preview__avatar"
+          src={ user.image || FALLBACK_AVATAR }
+          alt=""
+        />
+        <p className="edit-preview__name">{user.name || 'Your name'}</p>
+        <p className="edit-preview__email">{user.email || 'your@email.com'}</p>
+      </aside>
+    );
+  }
+
+  renderField(name, label, type, placeholder) {
+    const { touched, user } = this.state;
+    const error = touched[name] ? this.getErrors()[name] : '';
+
+    return (
+      <label className="field" htmlFor={ name }>
+        <span className="field__label">{label}</span>
+        <input
+          id={ name }
+          className="input"
+          type={ type }
+          name={ name }
+          placeholder={ placeholder }
+          value={ user[name] }
+          onChange={ this.onChange }
+          onBlur={ this.onBlur }
+        />
+        <span className="field__error">{error}</span>
+      </label>
+    );
+  }
+
+  renderDescription() {
+    const { user } = this.state;
+
+    return (
+      <label className="field" htmlFor="description">
+        <span className="field__label">Description</span>
+        <textarea
+          id="description"
+          className="textarea"
+          name="description"
+          maxLength={ DESCRIPTION_MAX }
+          placeholder="Tell people what you listen to"
+          value={ user.description }
+          onChange={ this.onChange }
+        />
+        <span className="field__hint">
+          {`${user.description.length}/${DESCRIPTION_MAX}`}
+        </span>
+      </label>
+    );
+  }
+
+  renderActions() {
+    const { isSaving } = this.state;
+    const errors = this.getErrors();
+    const isDisabled = isSaving || Boolean(errors.email || errors.name);
+
+    return (
+      <div className="edit-form__actions">
+        <Link to="/profile" className="btn btn--ghost">Cancel</Link>
+        <button type="submit" className="btn btn--primary" disabled={ isDisabled }>
+          {isSaving ? 'Saving...' : 'Save profile'}
+        </button>
+      </div>
+    );
+  }
+
+  renderForm() {
+    return (
+      <form className="edit-form card" onSubmit={ this.onSubmit }>
+        {this.renderField('name', 'Name', 'text', 'Your name')}
+        {this.renderField('email', 'E-mail', 'email', 'your@email.com')}
+        {this.renderField('image', 'Image link', 'text', 'https://...')}
+        {this.renderDescription()}
+        {this.renderActions()}
+      </form>
+    );
+  }
 
   render() {
-    const { isLoading, isLoginButtonDisabled, userInfoLogin } = this.state;
+    const { isLoading } = this.state;
+
     if (isLoading) {
-      return (
-        <div className="page-profile">
-          <Sidebar />
-          <Loading />
+      return <Layout title={ PAGE_TITLE }><Loading /></Layout>;
+    }
+
+    return (
+      <Layout title={ PAGE_TITLE } subtitle="Update how others see you">
+        <div className="edit-grid">
+          {this.renderPreview()}
+          {this.renderForm()}
         </div>
-      );
-    } return (
-      <div className="page-profile">
-        <Sidebar />
-        <div className="main-content-profile">
-          <h1 className="profile-section-name">Edit your profile!</h1>
-          <form
-            className="form-edit-profile"
-            onSubmit={ async (e) => {
-              e.preventDefault();
-              this.setState({ isLoading: true });
-              const { history } = this.props;
-              await updateUser(userInfoLogin[0]);
-              history.push('/profile');
-            } }
-          >
-            <label htmlFor="name">
-              <h2>
-                Name:
-              </h2>
-              <input
-                className="input-text-edit-name"
-                type="text"
-                value={ userInfoLogin[0].name }
-                id="name"
-                name="name"
-                onChange={ this.onInputChange }
-              />
-            </label>
-            <label htmlFor="email">
-              <h2>
-                E-mail:
-              </h2>
-              <input
-                className="input-text-edit-name"
-                type="text"
-                value={ userInfoLogin[0].email }
-                id="email"
-                name="email"
-                onChange={ this.onInputChange }
-              />
-            </label>
-            <label htmlFor="description">
-              <h2>
-                Description:
-              </h2>
-              <textarea
-                maxLength="500"
-                id="description"
-                value={ userInfoLogin[0].description }
-                name="description"
-                onChange={ this.onInputChange }
-              />
-            </label>
-            <label htmlFor="image">
-              <h2>
-                Image (link):
-              </h2>
-              <input
-                placeholder="your image link here"
-                className="input-text-edit-name"
-                type="text"
-                value={ userInfoLogin[0].image }
-                id="image"
-                name="image"
-                onChange={ this.onInputChange }
-              />
-            </label>
-            <button
-              name="buttonSubmit"
-              type="submit"
-              className="edit-button-save"
-              disabled={ isLoginButtonDisabled }
-            >
-              edit profile
-            </button>
-          </form>
-        </div>
-      </div>
+      </Layout>
     );
   }
 }

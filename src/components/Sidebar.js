@@ -1,120 +1,105 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { UilSearch,
+import {
+  UilFavorite,
   UilMultiply,
-  UilBars,
+  UilSearch,
+  UilSignout,
   UilUser,
-  UilFavorite } from '@iconscout/react-unicons';
+} from '@iconscout/react-unicons';
+import Brand from './Brand';
+import SidebarLink from './SidebarLink';
+import UserBadge from './UserBadge';
 import { getUser } from '../services/userAPI';
+import { clearSession } from '../utils/session';
 import '../styles/sidebar.css';
 
-const menuItems = [
-  {
-    path: '/search',
-    name: 'Search',
-    icon: <UilSearch className="icon" />,
-  },
-  {
-    path: '/profile',
-    name: 'Profile',
-    icon: <UilUser className="icon" />,
-  },
+const ICON_SIZE = 20;
+
+const MENU_ITEMS = [
+  { path: '/search', name: 'Search', icon: <UilSearch size={ ICON_SIZE } /> },
+  { path: '/profile', name: 'Profile', icon: <UilUser size={ ICON_SIZE } /> },
   {
     path: '/favorites',
     name: 'Favorites',
-    icon: <UilFavorite className="icon" />,
+    icon: <UilFavorite size={ ICON_SIZE } />,
   },
 ];
-
-const SMALL_SIZE_WINDOW = 992;
 
 class Sidebar extends Component {
   constructor() {
     super();
 
-    this.state = {
-      user: '',
-      image: '',
-      showingMenu: false,
-    };
-
-    this.toggleMenu = this.toggleMenu.bind(this);
+    this.state = { isLoading: true, user: {} };
   }
 
   componentDidMount() {
-    this.getUserName();
+    this.loadUser();
   }
 
-  async getUserName() {
+  loadUser = async () => {
     const user = await getUser();
-
-    this.setState({ user: user.name, image: user.image });
-  }
-
-  toggleMenu() {
-    if (window.innerWidth < SMALL_SIZE_WINDOW) {
-      const { showingMenu } = this.state;
-      if (showingMenu) {
-        this.setState({ showingMenu: false });
-      } else {
-        this.setState({ showingMenu: true });
-      }
-    }
-  }
+    this.setState({ isLoading: false, user });
+  };
 
   render() {
-    const { user, image, showingMenu } = this.state;
+    const { isOpen, onNavigate } = this.props;
+    const { isLoading, user } = this.state;
 
     return (
-      <div className="menus">
-        <h1 className="logo-title-sidebar">
-          <span>Trybe</span>
-          <span>Tunes</span>
-        </h1>
-        <section className="nav-menu-and-user-info">
-          <UilMultiply
-            size={ 50 }
-            className="toggle-close-menu"
-            style={ { display: showingMenu ? 'block' : 'none' } }
-            onClick={ this.toggleMenu }
-          />
-          <UilBars
-            size={ 50 }
-            className="toggle-menu"
-            style={ { display: showingMenu ? 'none' : 'block' } }
-            onClick={ this.toggleMenu }
-          />
-          <div className="userimage-username">
-            <img
-              className="nav-user-profile-image"
-              width="60px"
-              src={ image || 'https://github.com/duarte-dot/image-uploads/assets/78454964/7e303be4-12a7-414f-9aac-e83e8264cd14' }
-              alt="profile"
-            />
-            <p className="nav-username">{user || '...'}</p>
-          </div>
-        </section>
-        <nav className={ showingMenu ? 'sidebar showing' : 'sidebar' }>
-
-          <section
-            className="links"
-            style={ { display: showingMenu ? 'block' : 'none' } }
+      <aside
+        aria-label="main navigation"
+        className={ `sidebar${isOpen ? ' is-open' : ''}` }
+      >
+        <div className="side-top">
+          <Brand />
+          <button
+            type="button"
+            className="side-close"
+            aria-label="close menu"
+            onClick={ onNavigate }
           >
-            {
-              menuItems.map((item, index) => (
-                <section className="section-with-links" key={ index }>
-                  <Link className="link" to={ item.path } onClick={ this.toggleMenu }>
-                    {item.icon}
-                    <p className="link-text">{item.name}</p>
-                  </Link>
-                </section>
-              ))
-            }
-          </section>
+            <UilMultiply size={ ICON_SIZE } />
+          </button>
+        </div>
+
+        <nav className="side-nav">
+          {MENU_ITEMS.map((item) => (
+            <SidebarLink
+              key={ item.path }
+              path={ item.path }
+              name={ item.name }
+              icon={ item.icon }
+              onNavigate={ onNavigate }
+            />
+          ))}
         </nav>
-      </div>
+
+        <div className="side-foot">
+          <UserBadge
+            name={ user.name }
+            image={ user.image }
+            isLoading={ isLoading }
+          />
+          <Link
+            to="/"
+            className="side-logout"
+            title="log out"
+            aria-label="log out"
+            onClick={ clearSession }
+          >
+            <UilSignout size={ ICON_SIZE } />
+          </Link>
+        </div>
+      </aside>
     );
   }
 }
+
+Sidebar.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onNavigate: PropTypes.func.isRequired,
+};
 
 export default Sidebar;

@@ -1,64 +1,83 @@
 import React, { Component } from 'react';
-import Sidebar from '../components/Sidebar';
-import { getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { Link } from 'react-router-dom';
+import { UilFavorite } from '@iconscout/react-unicons';
+import Layout from '../components/Layout';
 import Loading from '../components/Loading';
-import FavoritesPlayer from '../components/FavoritesPlayer';
-import '../styles/favorites.css';
+import EmptyState from '../components/EmptyState';
+import TrackRow from '../components/TrackRow';
+import { getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+
+const ICON_SIZE = 28;
+const PAGE_TITLE = 'Favorites';
 
 class Favorites extends Component {
   constructor() {
     super();
 
-    this.state = {
-      isLoading: false,
-      favoriteSongs: [],
-    };
+    this.state = { favorites: [], isLoading: true };
   }
 
   componentDidMount() {
-    this.getSongs();
+    this.loadFavorites();
   }
 
-  getSongs = async () => {
-    this.setState({ isLoading: true });
-    const favoriteSongs = await getFavoriteSongs();
-    this.setState({ favoriteSongs, isLoading: false });
+  loadFavorites = async () => {
+    const favorites = await getFavoriteSongs();
+    this.setState({ favorites, isLoading: false });
   };
 
+  removeFavorite = async (song) => {
+    this.setState((prev) => ({
+      favorites: prev.favorites.filter(({ trackId }) => trackId !== song.trackId),
+    }));
+
+    await removeSong(song);
+  };
+
+  renderList() {
+    const { favorites } = this.state;
+
+    if (favorites.length === 0) {
+      return (
+        <EmptyState
+          icon={ <UilFavorite size={ ICON_SIZE } /> }
+          title="No favorites yet"
+          description="Tap the heart on any song and it will show up here."
+          action={ <Link to="/search" className="btn btn--primary">Find songs</Link> }
+        />
+      );
+    }
+
+    return (
+      <ul className="track-list">
+        {favorites.map((track, index) => (
+          <TrackRow
+            key={ track.trackId }
+            track={ track }
+            position={ index + 1 }
+            isFavorite
+            onToggleFavorite={ () => this.removeFavorite(track) }
+          />
+        ))}
+      </ul>
+    );
+  }
+
   render() {
-    const { favoriteSongs, isLoading } = this.state;
+    const { favorites, isLoading } = this.state;
 
     if (isLoading) {
-      return (
-        <div className="page-album">
-          <Sidebar />
-          <div className="page-loading-favorites">
-            <Loading />
-          </div>
-        </div>
-      );
-    } return (
-      <div className="page-album">
-        <Sidebar />
+      return <Layout title={ PAGE_TITLE }><Loading /></Layout>;
+    }
 
-        <div className="main-content-album">
-          <h1 className="favorites-section-name">Favorites</h1>
-          <div className="favorite-songs">
-            {favoriteSongs.map((song, index) => (
-              <FavoritesPlayer
-                trackName={ song.trackName }
-                previewUrl={ song.previewUrl }
-                trackId={ song.trackId }
-                artwork={ song.artworkUrl100 }
-                songObj={ song }
-                checked
-                key={ index }
-                getSongs={ this.getSongs }
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+    const subtitle = favorites.length === 1
+      ? '1 song saved'
+      : `${favorites.length} songs saved`;
+
+    return (
+      <Layout title={ PAGE_TITLE } subtitle={ subtitle }>
+        {this.renderList()}
+      </Layout>
     );
   }
 }

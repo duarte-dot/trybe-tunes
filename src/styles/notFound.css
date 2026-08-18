@@ -1,0 +1,26 @@
+.notfound {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+
+.notfound__code {
+  color: var(--accent);
+  font-size: clamp(3.5rem, 12vw, 6rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.notfound__title {
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+}
+
+.notfound__text {
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}

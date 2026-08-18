@@ -1,82 +1,79 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
+import Brand from '../components/Brand';
 import { createUser } from '../services/userAPI';
-import Loading from '../components/Loading';
 import '../styles/loginPage.css';
 
 const MIN_NAME_LENGTH = 3;
+const HERO_IMAGE = 'https://github.com/duarte-dot/image-uploads/assets/78454964/061b23d4-f57e-4164-96fc-8560cd7a84a6';
 
 class Login extends Component {
   constructor() {
     super();
 
-    this.state = {
-      name: '',
-      userLoggingIn: false,
-    };
-
-    this.onNameInputChange = this.onNameInputChange.bind(this);
+    this.state = { isLoading: false, name: '' };
   }
 
-  createUserAndRedirect = async (event) => {
+  onNameChange = ({ target }) => this.setState({ name: target.value });
+
+  onSubmit = async (event) => {
     event.preventDefault();
 
     const { history } = this.props;
     const { name } = this.state;
 
-    this.setState({ userLoggingIn: true });
-
-    await createUser({ name });
+    this.setState({ isLoading: true });
+    await createUser({ name: name.trim() });
 
     history.push('/search');
   };
 
-  onNameInputChange = (event) => {
-    const name = event.target.value;
-    this.setState({ name });
-  };
-
-  render() {
-    const { name, userLoggingIn } = this.state;
-    const loginButtonDisabled = name.length < MIN_NAME_LENGTH;
-
-    if (userLoggingIn) {
-      return (
-        <div className="page-loading-login">
-          <Loading />
-        </div>
-      );
-    }
+  renderForm() {
+    const { isLoading, name } = this.state;
+    const isDisabled = name.trim().length < MIN_NAME_LENGTH || isLoading;
 
     return (
+      <form className="login-card card" onSubmit={ this.onSubmit }>
+        <h1 className="login-card__title">Log in</h1>
+        <p className="login-card__text">No password needed. Just your name.</p>
+
+        <label className="field" htmlFor="name">
+          <span className="field__label">Your name</span>
+          <input
+            id="name"
+            className="input"
+            type="text"
+            autoComplete="name"
+            placeholder="e.g. Gabriel"
+            value={ name }
+            onChange={ this.onNameChange }
+          />
+          <span className="field__hint">
+            {`At least ${MIN_NAME_LENGTH} characters.`}
+          </span>
+        </label>
+
+        <button type="submit" className="btn btn--primary" disabled={ isDisabled }>
+          {isLoading ? 'Entering...' : 'Enter'}
+        </button>
+      </form>
+    );
+  }
+
+  render() {
+    return (
       <div className="login-page">
-        <div className="logo">
-          <h1 className="logo-title">
-            <span>Trybe</span>
-            <span>Tunes</span>
-          </h1>
-          <img className="logo-image" src="https://github.com/duarte-dot/image-uploads/assets/78454964/061b23d4-f57e-4164-96fc-8560cd7a84a6" alt="logo" />
-        </div>
-        <div className="login-box">
-          <form className="login-form" onSubmit={ this.createUserAndRedirect }>
-            <h1 className="login-title">Login</h1>
+        <section className="login-hero">
+          <Brand />
+          <h2 className="login-hero__title">Your music, your vibe.</h2>
+          <p className="login-hero__text">
+            Search any artist, preview their songs and keep the ones you love
+            in a single favorites list.
+          </p>
+          <img className="login-hero__art" src={ HERO_IMAGE } alt="" />
+        </section>
 
-            <input
-              type="text"
-              className="login-name-input"
-              placeholder="what's your name?"
-              onChange={ this.onNameInputChange }
-            />
-
-            <button
-              type="submit"
-              className="button-login"
-              disabled={ loginButtonDisabled }
-            >
-              Login
-            </button>
-          </form>
-        </div>
+        {this.renderForm()}
       </div>
     );
   }

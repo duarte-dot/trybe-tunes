@@ -1,77 +1,44 @@
-.search-section-name {
-  font-size: 2em;
-  margin-top: 8px;
-  margin-left: 20px;
+.search-form {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
 }
 
-.input-artist {
-  margin-left: 20px;
-  height: 35px;
-  margin-right: 5px;
+.search-field {
+  align-items: center;
+  background-color: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--text-dim);
+  display: flex;
+  flex: 1;
+  gap: 0.6rem;
+  max-width: 30rem;
+  padding: 0 1.1rem;
+  transition: border-color var(--transition);
 }
 
-.input-artist-after {
-  margin-left: 20px;
-  height: 35px;
-  margin-right: 5px;
-  border-radius: 5%;
+.search-field:focus-within {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
-.button-search:enabled {
-  background-color: hsla(45, 64%, 64%, 1);
-  color: white;
+.search-field__input {
+  background: none;
+  border: none;
+  color: var(--text);
+  flex: 1;
+  min-width: 0;
+  outline: none;
+  padding: 0.75rem 0;
 }
 
-.results-text-div {
-  text-align: center;
-  margin-top: 5px;
-  margin-bottom: 10px;
+.search-field__input::placeholder {
+  color: var(--text-dim);
 }
 
-.albums {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  justify-items: center;
-  scroll-behavior: smooth;
-}
-
-.no-album {
-  margin-left: 15%;
-  width: 200px;
-}
-
-@media screen and (min-width: 576px) and (max-width: 768px) {
-  /* body {
-    background-color: red;
-  } */
-}
-
-@media screen and (min-width: 768px) and (max-width: 992px) {
-  /* body {
-    background-color: blue;
-  } */
-}
-
-@media screen and (min-width: 992px) {
-  .page-search {
-    display: flex;
-    background-color: #eff2f9;
-  }
-
-  .main-content-search {
-    height: 100vh;
-    display: flex;
-    width: 100vw;
-    overflow: auto;
-    margin-left: 300px;
-    flex-direction: column;
-  }
-
-  .albums {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 0fr));
-  }
-}
-
-
-@media screen and (min-width: 1200px) {
+.search-results__count {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
 }

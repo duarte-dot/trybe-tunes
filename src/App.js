@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" render={ (props) => <Login { ...props } /> } />
+          <Route exact path="/" component={ Login } />
           <Route path="/profile/edit" component={ ProfileEdit } />
           <Route path="/profile" component={ Profile } />
           <Route path="/favorites" component={ Favorites } />

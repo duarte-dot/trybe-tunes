@@ -20,7 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:styles": "npx stylelint '**/*.css'",
+    "lint:styles": "npx stylelint \"src/**/*.css\"",
+    "lint:styles:fix": "npx stylelint \"src/**/*.css\" --fix",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js,.jsx"
   },
   "eslintConfig": {
